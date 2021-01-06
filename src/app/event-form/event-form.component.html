@@ -1,0 +1,24 @@
+<div class="container">
+
+  <h4>Create New Event</h4>
+
+  <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+
+    <mat-form-field>
+      <input matInput placeholder="titre" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="date de l'evenement" formControlName="date">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="lieu" formControlName="location">
+    </mat-form-field>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
+    </div>
+
+  </form>
+</div>
