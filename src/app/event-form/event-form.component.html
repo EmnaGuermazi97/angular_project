@@ -1,21 +1,37 @@
 <div class="container">
 
-  <h4>Create New Event</h4>
+<!--  <h4>Create New Event</h4>-->
 
   <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+    <div class="form-group">
+      <label for="title"> Titre de l'evenement</label>
+      <input type="text" class="form-control" formControlName="title" id="title" name="title">
 
-    <mat-form-field>
-      <input matInput placeholder="titre" formControlName="title">
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Choisir une date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="date de l'evenement" formControlName="date">
+    <mat-form-field appearance="fill">
+      <mat-label>Lieu de l'evenement</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let location of locations" [value]="location.value">
+          {{location.viewValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="lieu" formControlName="location">
-    </mat-form-field>
-
+    <!--    <mat-form-field>-->
+    <!--      <input matInput placeholder="titre" formControlName="title">-->
+    <!--    </mat-form-field>-->
+    <!--    <mat-form-field>-->
+    <!--      <input matInput placeholder="date de l'evenement" formControlName="date">-->
+    <!--    </mat-form-field>-->
+<!--    <mat-form-field>-->
+<!--      <input matInput placeholder="lieu" formControlName="location">-->
+<!--    </mat-form-field>-->
     <div class="form-element">
       <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
     </div>

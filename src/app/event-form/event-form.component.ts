@@ -3,6 +3,10 @@ import {Event} from '../../models/event.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../../services/event.service';
+interface Location {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-event-form',
@@ -13,6 +17,13 @@ export class EventFormComponent implements OnInit {
   currentItemId: string;
   item: Event;
   form: FormGroup;
+  locations: Location[] = [
+    {value: 'location1', viewValue: 'Sfax'},
+    {value: 'location2', viewValue: 'Tunis'},
+    {value: 'location3', viewValue: 'Sousse'},
+    {value: 'location4', viewValue: 'Djerba'},
+
+  ];
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
