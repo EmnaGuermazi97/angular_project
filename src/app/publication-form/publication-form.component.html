@@ -1,0 +1,41 @@
+<div class="container">
+
+  <!--  <h4>Create New Event</h4>-->
+
+  <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+    <div class="form-group">
+      <label for="titre"> Titre de la publication</label>
+      <input type="text" class="form-control" formControlName="titre" id="titre" name="titre">
+
+    </div>
+
+    <div class="form-group">
+      <label for="type"> Type de la publication</label>
+      <input type="text" class="form-control" formControlName="type" id="type" name="type">
+
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Date de publication </mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateApparition">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="form-group">
+      <label for="lien"> Lien de la publication</label>
+      <input type="text" class="form-control" formControlName="lien" id="lien" name="lien">
+
+    </div>
+
+    <div class="form-group">
+      <label for="sourcePdf"> Source pdf de la publication</label>
+      <input type="text" class="form-control" formControlName="sourcePdf" id="sourcePdf" name="sourcePdf">
+
+    </div>
+
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
+    </div>
+
+  </form>
+</div>

@@ -1,31 +1,40 @@
 <div class="container">
 
-  <h4>Create New Member</h4>
+  <h4><b>Crée un nouveau membre</b></h4>
 
   <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+    <div class="form-group">
+      <label for="cin"> Cin</label>
+      <input type="text" class="form-control" formControlName="cin" id="cin" name="cin">
+    </div>
 
-    <mat-form-field>
-      <input matInput placeholder="cin" formControlName="cin">
-    </mat-form-field>
+    <div class="form-group">
+      <label for="prenom"> Prénom</label>
+      <input type="text" class="form-control" formControlName="prenom" id="prenom" name="prenom">
 
-    <mat-form-field>
-      <input matInput placeholder="prenom" formControlName="name">
-    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="nom"> Nom</label>
+      <input type="text" class="form-control" formControlName="nom" id="nom" name="nom">
 
-    <mat-form-field>
-      <input matInput placeholder="nom" formControlName="last_name">
-    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="email"> Email</label>
+      <input type="text" class="form-control" formControlName="email" id="email" name="email">
 
-    <mat-form-field>
-      <input matInput placeholder="email" formControlName="email">
-    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="cv"> Cv</label>
+      <input type="text" class="form-control" formControlName="cv" id="cv" name="cv">
+    </div>
 
-    <mat-form-field>
-      <input matInput placeholder="cv" formControlName="cv">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="profession" formControlName="profession">
+    <mat-form-field appearance="fill">
+      <mat-label>Profession</mat-label>
+      <mat-select formControlName="type_mbr">
+        <mat-option *ngFor="let profession of professions" [value]="profession.value">
+          {{profession.viewValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <div class="form-element">

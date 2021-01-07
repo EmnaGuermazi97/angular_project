@@ -3,7 +3,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Member} from '../../models/member.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MemberService} from '../../services/member.service';
-
+interface Profession {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-member-form',
   templateUrl: './member-form.component.html',
@@ -13,7 +16,12 @@ export class MemberFormComponent implements OnInit {
   currentItemId: string;
   item: Member;
   form: FormGroup;
+  professions: Profession[] = [
+    {value: 'Etudiant', viewValue: 'Etudiant'},
+    {value: 'Enseignant', viewValue: 'Enseignant'},
 
+
+  ];
 
   constructor(
     private router: Router,
@@ -37,10 +45,10 @@ export class MemberFormComponent implements OnInit {
   initForm(item: Member): void {
     this.form = new FormGroup({
       cin: new FormControl(item?.cin, [Validators.required]),
-      name: new FormControl(item?.prenom, [Validators.required]),
-      last_name: new FormControl(item?.nom, [Validators.required]),
+      prenom: new FormControl(item?.prenom, [Validators.required]),
+      nom: new FormControl(item?.nom, [Validators.required]),
       email: new FormControl(item?.email, [Validators.required]),
-      profession: new FormControl(item?.type_mbr, [Validators.required]),
+      type_mbr: new FormControl(item?.type_mbr, [Validators.required]),
       cv: new FormControl(item?.cv, [Validators.required]),
     });
   }

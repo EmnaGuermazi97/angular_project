@@ -10,6 +10,8 @@ import { MemberFormComponent } from './member-form/member-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventFormComponent } from './event-form/event-form.component';
+import { PublicationFormComponent } from './publication-form/publication-form.component';
+import { PublicationListComponent } from './publication-list/publication-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { EventFormComponent } from './event-form/event-form.component';
     MemberListComponent,
     MemberFormComponent,
     EventListComponent,
-    EventFormComponent
+    EventFormComponent,
+    PublicationFormComponent,
+    PublicationListComponent
   ],
   imports: [
     BrowserModule,

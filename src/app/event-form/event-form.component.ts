@@ -18,10 +18,10 @@ export class EventFormComponent implements OnInit {
   item: Event;
   form: FormGroup;
   locations: Location[] = [
-    {value: 'location1', viewValue: 'Sfax'},
-    {value: 'location2', viewValue: 'Tunis'},
-    {value: 'location3', viewValue: 'Sousse'},
-    {value: 'location4', viewValue: 'Djerba'},
+    {value: 'Sfax', viewValue: 'Sfax'},
+    {value: 'Tunis', viewValue: 'Tunis'},
+    {value: 'Sousse', viewValue: 'Sousse'},
+    {value: 'Djerba', viewValue: 'Djerba'},
 
   ];
   constructor(
