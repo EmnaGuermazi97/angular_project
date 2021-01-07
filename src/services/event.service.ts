@@ -33,16 +33,16 @@ export class EventService {
     }
   }
 
-  createEvent(member: any): Promise<Event> {
-    return this.httpClient.post<Event>(`${this.path}/membres/etudiant`, member).toPromise();
+  createEvent(event: any): Promise<Event> {
+    return this.httpClient.post<Event>(`${this.path}/events/add`, event).toPromise();
   }
 
-  updateEvent(id: string, member: any): Promise<Event> {
-    return this.httpClient.put<Event>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
+  updateEvent(id: string, event: any): Promise<Event> {
+    return this.httpClient.put<Event>(`${this.path}/events/update/${id}`, event).toPromise();
   }
   removeEventById(id: string): Promise<void> {
-    // return this.httpClient.delete<void>('linkToRestApi').toPromise();
-    this.placeholderEvents = this.placeholderEvents.filter(item => item.id !== id);
-    return new Promise(resolve => resolve());
+     return this.httpClient.delete<void>(`${this.path}/events/delete/${id}`).toPromise();
+    // this.placeholderEvents = this.placeholderEvents.filter(item => item.id !== id);
+    // return new Promise(resolve => resolve());
   }
 }
