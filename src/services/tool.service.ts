@@ -10,7 +10,6 @@ import {environment} from '../environments/environment';
 export class ToolService {
 
   private path = `${environment.gatewayEndpoint}/outil-service`;
-  // @ts-ignore
   public placeholderTools: Tool[] = GLOBAL._DB.tools;
   constructor(
     private httpClient: HttpClient,
@@ -38,16 +37,16 @@ export class ToolService {
   }
 
   createTool(tool: any): Promise<Tool> {
-    return this.httpClient.post<Tool>(`${this.path}/tools`, tool).toPromise();
+    return this.httpClient.post<Tool>(`${this.path}/tools/add`, tool).toPromise();
   }
 
   updateTool(id: string, tool: any): Promise<Tool> {
-    return this.httpClient.put<Tool>(`${this.path}/tools/${id}`, tool).toPromise();
+    return this.httpClient.put<Tool>(`${this.path}/tools/update/${id}`, tool).toPromise();
   }
   removeToolById(id: string): Promise<void> {
-    // return this.httpClient.delete<void>('linkToRestApi').toPromise();
-    this.placeholderTools = this.placeholderTools.filter(item => item.id !== id);
-    return new Promise(resolve => resolve());
+    return this.httpClient.delete<void>(`${this.path}/tools/delete/${id}`).toPromise();
+    // this.placeholderTools = this.placeholderTools.filter(item => item.id !== id);
+    // return new Promise(resolve => resolve());
   }
 
 }

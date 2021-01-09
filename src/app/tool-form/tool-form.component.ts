@@ -35,8 +35,8 @@ export class ToolFormComponent implements OnInit {
 
   initForm(item: Tool): void {
     this.form = new FormGroup({
-      cin: new FormControl(item?.date, [Validators.required]),
-      name: new FormControl(item?.source, [Validators.required]),
+      date: new FormControl(item?.date, [Validators.required]),
+      source: new FormControl(item?.source, [Validators.required]),
     });
   }
 

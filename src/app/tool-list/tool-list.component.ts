@@ -8,7 +8,7 @@ import {Tool} from '../../models/tool.model';
   styleUrls: ['./tool-list.component.scss']
 })
 export class ToolListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'date', 'source'];
+  displayedColumns: string[] = ['id', 'date', 'source', 'actions'];
   dataSource: Tool[] = [];
   constructor(private toolService: ToolService) { }
 

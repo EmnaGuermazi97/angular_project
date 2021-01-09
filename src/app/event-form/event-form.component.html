@@ -17,8 +17,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Lieu de l'evenement</mat-label>
-      <mat-select formControlName="location">
-        <mat-option *ngFor="let location of locations" [value]="location.value">
+      <mat-select>
+        <mat-option *ngFor="let location of locations" [value]="location.value" formControlName="location">
           {{location.viewValue}}
         </mat-option>
       </mat-select>

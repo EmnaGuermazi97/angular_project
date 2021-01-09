@@ -1,11 +1,17 @@
 <div class="container">
 
-  <h4>Create New Member</h4>
+  <h4>Ajout d'un nouveau outil</h4>
 
   <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
 
-    <mat-form-field>
-      <input matInput placeholder="date" formControlName="date">
+<!--    <mat-form-field>-->
+<!--      <input matInput placeholder="date" formControlName="date">-->
+<!--    </mat-form-field>-->
+    <mat-form-field appearance="fill">
+      <mat-label>Choisir une date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
