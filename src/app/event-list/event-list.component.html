@@ -23,7 +23,7 @@
   <!-- Weight  Column -->
   <ng-container matColumnDef="date">
     <th mat-header-cell class="px-12" *matHeaderCellDef> Date de l'evenement</th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.date}} </td>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.date | date :'d MMMM y, HH:mm'}} </td>
   </ng-container>
 
   <!-- Weight  Column -->

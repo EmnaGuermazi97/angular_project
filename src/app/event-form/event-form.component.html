@@ -15,10 +15,10 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" >
       <mat-label>Lieu de l'evenement</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let location of locations" [value]="location.value" formControlName="location">
+      <mat-select formControlName="location">
+        <mat-option *ngFor="let location of locations" [value]="location.value" >
           {{location.viewValue}}
         </mat-option>
       </mat-select>
