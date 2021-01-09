@@ -6,6 +6,8 @@ import {EventListComponent} from './event-list/event-list.component';
 import {EventFormComponent} from './event-form/event-form.component';
 import {PublicationListComponent} from './publication-list/publication-list.component';
 import {PublicationFormComponent} from './publication-form/publication-form.component';
+import {ToolListComponent} from './tool-list/tool-list.component';
+import {ToolFormComponent} from './tool-form/tool-form.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,26 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'tools',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ToolListComponent,
+      },
+      {
+        path: 'create',
+        pathMatch: 'full',
+        component: ToolFormComponent,
+      },
+      {
+        path: ':id/edit',
+        pathMatch: 'full',
+        component: ToolFormComponent,
+      }
+      ]
+      },
   {path: 'publications',
   children: [
   {
