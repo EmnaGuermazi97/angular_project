@@ -14,6 +14,10 @@ import { PublicationFormComponent } from './publication-form/publication-form.co
 import { PublicationListComponent } from './publication-list/publication-list.component';
 import { ToolFormComponent } from './tool-form/tool-form.component';
 import { ToolListComponent } from './tool-list/tool-list.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { ToolListComponent } from './tool-list/tool-list.component';
     PublicationFormComponent,
     PublicationListComponent,
     ToolFormComponent,
-    ToolListComponent
+    ToolListComponent,
+    RegisterComponent,
+    ProfileComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
