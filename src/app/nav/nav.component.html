@@ -6,8 +6,8 @@
     <mat-toolbar>Menu</mat-toolbar>
     <hr>
     <mat-nav-list>
-      <a mat-list-item href="/member">Mon Dashboard</a>
-      <a mat-list-item href="profile">Modifier mon profile</a>
+      <a mat-list-item href="/member"*ngIf="currentUser">Mon Dashboard</a>
+      <a mat-list-item href="profile"*ngIf="currentUser">Modifier mon profile</a>
       <a mat-list-item href="/members">Tous les membres</a>
       <a mat-list-item href="/events">Tous les evenements</a>
       <a mat-list-item href="/publications">Tous les publications</a>
@@ -24,7 +24,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>gestionLaboratoire</span>
+      <span>Gestion Laboratoire</span>
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
 <!--        <li class="nav-item">-->
 <!--          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->

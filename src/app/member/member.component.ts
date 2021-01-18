@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-member',
@@ -31,10 +32,14 @@ export class MemberComponent implements OnInit {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private token: TokenStorageService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private token: TokenStorageService, private router: Router) {}
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    const message = 'redirection successful';
+    // @ts-ignore
+    this.router.navigate(['./member']).then(console.log(message));
+
 
   }
 }

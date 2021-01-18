@@ -6,19 +6,22 @@ import {ConfirmDialogComponent} from '../../@root/confirm-dialog/confirm-dialog.
 import {takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
+import {TokenStorageService} from '../../services/token-storage.service';
 @Component({
   selector: 'app-tool-list',
   templateUrl: './tool-list.component.html',
   styleUrls: ['./tool-list.component.scss']
 })
 export class ToolListComponent implements OnInit, OnDestroy {
+  currentUser: any;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'date', 'source', 'actions'];
   dataSource: Tool[] = [];
-  constructor(private toolService: ToolService, private dialog: MatDialog) { }
+  constructor(private toolService: ToolService, private dialog: MatDialog, private token: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
     this.fetchDataSource();
   }
   ngOnDestroy(): void {
@@ -31,7 +34,7 @@ export class ToolListComponent implements OnInit, OnDestroy {
     });  }
 
   onRemoveAccount(id: any): void {
-    //this.toolService.removeToolById(id).then(() => this.fetchDataSource());
+    // this.toolService.removeToolById(id).then(() => this.fetchDataSource());
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       hasBackdrop: true,
       disableClose: false,

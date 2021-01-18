@@ -1,12 +1,12 @@
 <div class="my-16" fxLayout="row" fxLayoutAlign="end center">
-  <button mat-raised-button color="primary" routerLink="create">
+  <button *ngIf="currentUser" mat-raised-button color="primary" routerLink="create">
     <mat-icon class="s-24 mr-4">add</mat-icon>
     Ajouter un nouveau membre
   </button>
 
 </div>
 
-
+<h1>Liste des membres du laboratoire</h1>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100-p">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

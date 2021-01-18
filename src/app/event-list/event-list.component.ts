@@ -5,18 +5,20 @@ import {ConfirmDialogComponent} from '../../@root/confirm-dialog/confirm-dialog.
 import {takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
+import {TokenStorageService} from '../../services/token-storage.service';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit, OnDestroy{
+  currentUser: any;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'title', 'date', 'location', 'actions'];
   dataSource: Event[] = []; // empty then it would be filled
 
-  constructor(private eventService: EventService, private dialog: MatDialog) { }
+  constructor(private eventService: EventService, private dialog: MatDialog, private token: TokenStorageService) { }
 
   ngOnDestroy(): void {
     this._onDestroy.next();
@@ -24,6 +26,7 @@ export class EventListComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
     this.fetchDataSource();
 
   }

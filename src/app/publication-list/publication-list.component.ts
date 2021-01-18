@@ -5,19 +5,22 @@ import {ConfirmDialogComponent} from '../../@root/confirm-dialog/confirm-dialog.
 import {takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
+import {TokenStorageService} from '../../services/token-storage.service';
 @Component({
   selector: 'app-publication-list',
   templateUrl: './publication-list.component.html',
   styleUrls: ['./publication-list.component.scss']
 })
 export class PublicationListComponent implements OnInit, OnDestroy {
+  currentUser: any;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'titre', 'type', 'dateApparition', 'lien', 'sourcePdf', 'actions'];
   dataSource: Publication[] = []; // empty then it would be filled
-  constructor(private publicationService: PublicationService, private dialog: MatDialog) { }
+  constructor(private publicationService: PublicationService, private dialog: MatDialog, private token: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
     this.fetchDataSource();
   }
   ngOnDestroy(): void {
