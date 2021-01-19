@@ -18,9 +18,23 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+<<<<<<< HEAD
 import {GridAllModule} from "@syncfusion/ej2-angular-grids";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtTokenInterceptor} from "./interceptor/jwtTokenInterceptor";
+=======
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MemberComponent } from './member/member.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+>>>>>>> accceb97d41575bdeb6875aedfa4bfac9bc3e8ac
 
 @NgModule({
   declarations: [
@@ -36,7 +50,9 @@ import {JwtTokenInterceptor} from "./interceptor/jwtTokenInterceptor";
     RegisterComponent,
     ProfileComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavComponent,
+    MemberComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +61,19 @@ import {JwtTokenInterceptor} from "./interceptor/jwtTokenInterceptor";
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+<<<<<<< HEAD
     GridAllModule,
+=======
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+>>>>>>> accceb97d41575bdeb6875aedfa4bfac9bc3e8ac
 
   ],
   providers: [

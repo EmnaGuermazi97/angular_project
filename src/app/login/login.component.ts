@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router,
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        // this.router.navigate(['./profile']);
-        this.reloadPage();
+        // this.reloadPage();
+        this.redirectAfterLogin();
       },
       err => {
         this.errorMessage = err.error.message;
@@ -44,6 +44,12 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
+  }
+  redirectAfterLogin(): void {
+    const message = 'redirection successful';
+    // @ts-ignore
+    this.router.navigate(['./member']).then(console.log(message));
+
   }
 
 }

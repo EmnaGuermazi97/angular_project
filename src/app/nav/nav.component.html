@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <hr>
+    <mat-nav-list>
+      <a mat-list-item href="/member">Mon Dashboard</a>
+      <a mat-list-item href="profile">Modifier mon profile</a>
+      <a mat-list-item href="/members">Tous les membres</a>
+      <a mat-list-item href="/events">Tous les evenements</a>
+      <a mat-list-item href="/publications">Tous les publications</a>
+      <a mat-list-item href="/tools">Tous les outils</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>gestionLaboratoire</span>
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+<!--        <li class="nav-item">-->
+<!--          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->
+<!--        </li>-->
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
+
+    </mat-toolbar>
+    <div class="container">
+      <!--  <br>-->
+      <!--  <h2 style="text-align: center;">{{title}}</h2>-->
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <span>All Rights Reserved 2021 </span>
+      </div>
+    </footer>  </mat-sidenav-content>
+</mat-sidenav-container>
