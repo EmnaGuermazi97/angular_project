@@ -18,7 +18,6 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-// @ts-ignore
 import {GridAllModule} from '@syncfusion/ej2-angular-grids';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtTokenInterceptor} from './interceptor/jwtTokenInterceptor';
