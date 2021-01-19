@@ -6,19 +6,26 @@ import {ConfirmDialogComponent} from '../../@root/confirm-dialog/confirm-dialog.
 import {takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
+import {TokenStorageService} from '../../services/token-storage.service';
+
 @Component({
-  selector: 'app-member-list',
-  templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.scss']
-})
+    selector: 'app-member-list',
+    templateUrl: './member-list.component.html',
+    styleUrls: ['./member-list.component.scss']
+  })
+
 export class MemberListComponent implements OnInit, OnDestroy {
+  currentUser: any;
+
+
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'cin', 'name', 'email', 'type_mbr', 'cv', 'actions'];
   dataSource: Member[] = []; // empty then it would be filled
-  constructor(private memberService: MemberService, private dialog: MatDialog) { }
+  constructor(private memberService: MemberService, private dialog: MatDialog, private token: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
     this.fetchDataSource();
   }
   ngOnDestroy(): void {

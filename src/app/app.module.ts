@@ -18,6 +18,9 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import {GridAllModule} from "@syncfusion/ej2-angular-grids";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {JwtTokenInterceptor} from "./interceptor/jwtTokenInterceptor";
 
 @NgModule({
   declarations: [
@@ -42,9 +45,16 @@ import { HomeComponent } from './home/home.component';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    GridAllModule,
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : JwtTokenInterceptor,
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
