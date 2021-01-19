@@ -1,3 +1,5 @@
+{{ currentUser.accessToken.substring(0, 20) }} ...
+
 <div class="my-16" fxLayout="row" fxLayoutAlign="end center">
   <button *ngIf="currentUser" mat-raised-button color="primary" routerLink="/addMember">
     <mat-icon class="s-24 mr-4">add</mat-icon>
@@ -7,6 +9,14 @@
 </div>
 
 <h1>Liste des membres du laboratoire</h1>
+<!--<ejs-grid [dataSource]='dataSource' [allowFiltering]='true' height='273px'>-->
+<!--  <e-columns>-->
+<!--    <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=100></e-column>-->
+<!--    <e-column field='CustomerID' headerText='Customer ID' width=120></e-column>-->
+<!--    <e-column field='ShipCity' headerText='Ship City' width=100></e-column>-->
+<!--    <e-column field='ShipName' headerText='Ship Name' width=100></e-column>-->
+<!--  </e-columns>-->
+<!--</ejs-grid>-->
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100-p">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

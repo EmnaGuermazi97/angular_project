@@ -7,11 +7,13 @@ import {takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
 import {TokenStorageService} from '../../services/token-storage.service';
+
 @Component({
-  selector: 'app-member-list',
-  templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.scss']
-})
+    selector: 'app-member-list',
+    templateUrl: './member-list.component.html',
+    styleUrls: ['./member-list.component.scss']
+  })
+
 export class MemberListComponent implements OnInit, OnDestroy {
   currentUser: any;
   // tslint:disable-next-line:variable-name
