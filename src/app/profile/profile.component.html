@@ -1,33 +1,75 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>
-  <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-    {{currentUser.accessToken}}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <p>
-    <strong>UserName:</strong>
-    {{ currentUser.username}}
-  </p>
-  <p>
-    <strong>Id:</strong>
-    {{ currentUser.id }}
-  </p>
-  <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul>
+  <h4><b>Crée un nouveau membre</b></h4>
+
+  <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+    <div class="form-group">
+      <label for="cin"> Cin</label>
+      <input type="text" class="form-control" formControlName="cin" id="cin" name="cin">
+    </div>
+
+    <div class="form-group">
+      <label for="prenom"> Prénom</label>
+      <input type="text" class="form-control" formControlName="prenom" id="prenom" name="prenom">
+
+    </div>
+    <div class="form-group">
+      <label for="nom"> Nom</label>
+      <input type="text" class="form-control" formControlName="nom" id="nom" name="nom">
+
+    </div>
+    <div class="form-group">
+      <label for="email"> Email</label>
+      <input type="text" class="form-control" formControlName="email" id="email" name="email">
+
+    </div>
+    <div class="form-group">
+      <label for="cv"> Cv</label>
+      <input type="text" class="form-control" formControlName="cv" id="cv" name="cv">
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Profession</mat-label>
+      <mat-select formControlName="type_mbr">
+        <mat-option *ngFor="let profession of professions" [value]="profession.value">
+          {{profession.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
+    </div>
+
+  </form>
+<!--  <header class="jumbotron">-->
+<!--    <h3>-->
+<!--      <strong>{{ currentUser.username }}</strong> Profile-->
+<!--    </h3>-->
+<!--  </header>-->
+<!--  <p>-->
+<!--    <strong>Token:</strong>-->
+<!--    {{ currentUser.accessToken.substring(0, 20) }} ...-->
+<!--    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}-->
+<!--    {{currentUser.accessToken}}-->
+<!--  </p>-->
+<!--  <p>-->
+<!--    <strong>Email:</strong>-->
+<!--    {{ currentUser.email }}-->
+<!--  </p>-->
+<!--  <p>-->
+<!--    <strong>UserName:</strong>-->
+<!--    {{ currentUser.username}}-->
+<!--  </p>-->
+<!--  <p>-->
+<!--    <strong>Id:</strong>-->
+<!--    {{ currentUser.id }}-->
+<!--  </p>-->
+<!--  <strong>Roles:</strong>-->
+<!--  <ul>-->
+<!--    <li *ngFor="let role of currentUser.roles">-->
+<!--      {{ role }}-->
+<!--    </li>-->
+<!--  </ul>-->
 </div>
 
 <ng-template #loggedOut>

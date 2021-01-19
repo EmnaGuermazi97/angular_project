@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  item: Member;
+  member: Member;
 
 
   constructor(    private router: Router,
@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(): void {
-    this.authService.addMember(this.form).subscribe(
+    this.authService.addUser(this.form).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
     );
     const message = 'member added in table members';
 
-    const objectToSubmit = {...this.item, ...this.form.value};
+    const objectToSubmit = {...this.member, ...this.form.value};
     // @ts-ignore
     this.memberService.saveMember(objectToSubmit).then(console.log(message));
   }
