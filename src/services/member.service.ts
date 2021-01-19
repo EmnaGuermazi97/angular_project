@@ -43,12 +43,23 @@ export class MemberService {
   }
 
   createMember(member: any): Promise<Member> {
-    return this.httpClient.post<Member>(`${this.path}/membres/etudiant`, member).toPromise();
+    return this.httpClient.post<Member>(`${this.path}/membres/add`, member).toPromise();
   }
-
+  // createMemberStudent(member: any): Promise<Member> {
+  //   return this.httpClient.post<Member>(`${this.path}/membres/etudiant`, member).toPromise();
+  // }
+  // createMemberProfessor(member: any): Promise<Member> {
+  //   return this.httpClient.post<Member>(`${this.path}/membres/etudiant`, member).toPromise();
+  // }
   updateMember(id: string, member: any): Promise<Member> {
     return this.httpClient.put<Member>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
   }
+  // updateMemberStudent(id: string, member: any): Promise<Member> {
+  //   return this.httpClient.put<Member>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
+  // }
+  // updateMemberProfessor(id: string, member: any): Promise<Member> {
+  //   return this.httpClient.put<Member>(`${this.path}/membres/enseignant/${id}`, member).toPromise();
+  // }
   removeMemberById(id: string): Promise<void> {
     // return this.httpClient.delete<void>('linkToRestApi').toPromise();
     this.placeholderMembers = this.placeholderMembers.filter(item => item.id !== id);

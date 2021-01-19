@@ -29,6 +29,7 @@ import { MemberComponent } from './member/member.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatMenuModule } from '@angular/material/menu';
     LoginComponent,
     HomeComponent,
     NavComponent,
-    MemberComponent
+    MemberComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

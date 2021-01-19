@@ -13,6 +13,14 @@
     <strong>Email:</strong>
     {{ currentUser.email }}
   </p>
+  <p>
+    <strong>UserName:</strong>
+    {{ currentUser.username}}
+  </p>
+  <p>
+    <strong>Id:</strong>
+    {{ currentUser.id }}
+  </p>
   <strong>Roles:</strong>
   <ul>
     <li *ngFor="let role of currentUser.roles">

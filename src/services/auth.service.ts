@@ -28,4 +28,11 @@ export class AuthService {
       password: user.password
     }, httpOptions);
   }
+  addMember(user): Observable<any> {
+    return this.http.post(AUTH_API + 'user/add', {
+      username: user.username,
+      email: user.email,
+      password: user.password
+    }, httpOptions);
+  }
 }

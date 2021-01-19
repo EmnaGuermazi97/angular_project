@@ -13,6 +13,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {MemberComponent} from './member/member.component';
+import {UserComponent} from './user/user.component';
 
 const routes: Routes = [
   {
@@ -108,6 +109,7 @@ const routes: Routes = [
 },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'addMember', component: UserComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'member', component: MemberComponent },
