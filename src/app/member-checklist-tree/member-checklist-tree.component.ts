@@ -242,15 +242,19 @@ export class MemberChecklistTreeComponent implements OnInit {
   }
 
   /** Select the category so we can insert the new item. */
+  // tslint:disable-next-line:typedef
   addNewItem(node: TodoItemFlatNode) {
     const parentNode = this.flatNodeMap.get(node);
+    // tslint:disable-next-line:no-non-null-assertion
     this._database.insertItem(parentNode!, '');
     this.treeControl.expand(node);
   }
 
   /** Save the node to database */
+  // tslint:disable-next-line:typedef
   saveNode(node: TodoItemFlatNode, itemValue: string) {
     const nestedNode = this.flatNodeMap.get(node);
+    // tslint:disable-next-line:no-non-null-assertion
     this._database.updateItem(nestedNode!, itemValue);
   }
 }
