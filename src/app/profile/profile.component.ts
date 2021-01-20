@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // to fixxxxxxxx
     this.currentUser = this.token.getUser();
     // this.currentItemId = this.activatedRoute.snapshot.params.id;
     if (!!this.currentUser.id) {
@@ -60,21 +61,10 @@ export class ProfileComponent implements OnInit {
 
   }
   onSubmit(): void {
-    const message = 'member added in table members';
-
     const objectToSubmit = {...this.item, ...this.form.value};
-    // @ts-ignore
-    this.memberService.saveMember(objectToSubmit).then(console.log(message));
-    this.authService.updateUser(this.currentUser.id, objectToSubmit ).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      }
+    console.log(objectToSubmit);
+    this.memberService.saveMember(objectToSubmit).then(() =>
+      this.router.navigate(['./members'])
     );
   }
 }

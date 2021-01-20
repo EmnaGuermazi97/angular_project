@@ -14,6 +14,7 @@ import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {MemberComponent} from './member/member.component';
 import {UserComponent} from './user/user.component';
+import {MemberChecklistTreeComponent} from './member-checklist-tree/member-checklist-tree.component';
 
 const routes: Routes = [
   {
@@ -113,7 +114,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'member', component: MemberComponent },
-
+  { path: 'chooseMembers', component: MemberChecklistTreeComponent },
   {
     path: '**',
     redirectTo: 'home'

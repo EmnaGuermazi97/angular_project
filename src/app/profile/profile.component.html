@@ -1,5 +1,5 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
-  <h4><b>Crée un nouveau membre</b></h4>
+  <h4><b>Modifier mon profile</b></h4>
 
   <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
     <div class="form-group">

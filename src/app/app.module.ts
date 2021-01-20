@@ -34,6 +34,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
+import { MemberChecklistTreeComponent } from './member-checklist-tree/member-checklist-tree.component';
 
 
 
@@ -55,7 +56,8 @@ import {MatMenuModule} from '@angular/material/menu';
     HomeComponent,
     NavComponent,
     MemberComponent,
-    UserComponent
+    UserComponent,
+    MemberChecklistTreeComponent
   ],
   imports: [
     BrowserModule,
