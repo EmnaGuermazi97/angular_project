@@ -13,6 +13,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 })
 export class EventListComponent implements OnInit, OnDestroy{
   currentUser: any;
+  role: string;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'title', 'date', 'location', 'actions'];
@@ -27,6 +28,12 @@ export class EventListComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    if (!!this.currentUser)
+    {this.role = this.currentUser.roles[0];
+    }
+    else
+    {this.role = 'visitor';
+    }
     this.fetchDataSource();
 
   }

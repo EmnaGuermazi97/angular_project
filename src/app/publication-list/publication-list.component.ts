@@ -13,6 +13,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 })
 export class PublicationListComponent implements OnInit, OnDestroy {
   currentUser: any;
+  role: string;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'titre', 'type', 'dateApparition', 'lien', 'sourcePdf', 'actions'];
@@ -21,6 +22,12 @@ export class PublicationListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    if (!!this.currentUser)
+    {this.role = this.currentUser.roles[0];
+    }
+    else
+    {this.role = 'visitor';
+    }
     this.fetchDataSource();
   }
   ngOnDestroy(): void {

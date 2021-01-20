@@ -1,5 +1,5 @@
 <div class="my-16" fxLayout="row" fxLayoutAlign="end center">
-  <button mat-raised-button color="primary" routerLink="create">
+  <button *ngIf="currentUser" mat-raised-button color="primary" routerLink="create">
     <mat-icon class="s-24 mr-4">add</mat-icon>
     Ajouter une nouvelle publication
   </button>
@@ -47,13 +47,13 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="actions" stickyEnd>
+  <ng-container matColumnDef="actions"  stickyEnd>
     <th mat-header-cell class="px-12 w-120" *matHeaderCellDef></th>
     <td mat-cell class="px-12 w-120" *matCellDef="let element">
-      <button mat-icon-button [routerLink]="element.id + '/edit'">
+      <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-icon-button [routerLink]="element.id + '/edit'">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
+      <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
         <mat-icon>delete</mat-icon>
       </button>
 

@@ -15,6 +15,9 @@ import {ProfileComponent} from './profile/profile.component';
 import {MemberComponent} from './member/member.component';
 import {UserComponent} from './user/user.component';
 import {MemberChecklistTreeComponent} from './member-checklist-tree/member-checklist-tree.component';
+import {PublicationsByMemberComponent} from './member/publications-by-member/publications-by-member.component';
+import {EventsByMemberComponent} from './member/events-by-member/events-by-member.component';
+import {ToolsByMemberComponent} from './member/tools-by-member/tools-by-member.component';
 
 const routes: Routes = [
   {
@@ -114,6 +117,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'member', component: MemberComponent },
+  { path: 'publicationsByMember', component: PublicationsByMemberComponent },
+  { path: 'eventsByMember', component: EventsByMemberComponent },
+  { path: 'toolsByMember', component: ToolsByMemberComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
   {
     path: '**',

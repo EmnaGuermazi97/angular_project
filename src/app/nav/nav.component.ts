@@ -11,6 +11,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 })
 export class NavComponent implements OnInit {
   currentUser: any;
+  role: string;
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -35,6 +36,12 @@ export class NavComponent implements OnInit {
 
       this.username = user.username;
       this.currentUser = this.tokenStorageService.getUser();
+    }
+    if (!!this.currentUser)
+    {this.role = this.currentUser.roles[0];
+    }
+    else
+    {this.role = 'visitor';
     }
   }
 

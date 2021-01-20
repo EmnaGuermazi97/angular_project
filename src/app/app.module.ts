@@ -35,6 +35,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { MemberChecklistTreeComponent } from './member-checklist-tree/member-checklist-tree.component';
+import { PublicationsByMemberComponent } from './member/publications-by-member/publications-by-member.component';
+import { EventsByMemberComponent } from './member/events-by-member/events-by-member.component';
+import { ToolsByMemberComponent } from './member/tools-by-member/tools-by-member.component';
 
 
 
@@ -57,7 +60,10 @@ import { MemberChecklistTreeComponent } from './member-checklist-tree/member-che
     NavComponent,
     MemberComponent,
     UserComponent,
-    MemberChecklistTreeComponent
+    MemberChecklistTreeComponent,
+    PublicationsByMemberComponent,
+    EventsByMemberComponent,
+    ToolsByMemberComponent
   ],
   imports: [
     BrowserModule,
