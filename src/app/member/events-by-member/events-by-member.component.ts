@@ -7,6 +7,7 @@ import {TokenStorageService} from '../../../services/token-storage.service';
 import {ConfirmDialogComponent} from '../../../@root/confirm-dialog/confirm-dialog.component';
 import {takeUntil} from 'rxjs/operators';
 import {MemberService} from '../../../services/member.service';
+import {Member} from '../../../models/member.model';
 
 @Component({
   selector: 'app-events-by-member',
@@ -16,7 +17,8 @@ import {MemberService} from '../../../services/member.service';
 export class EventsByMemberComponent implements OnInit, OnDestroy {
   currentUser: any;
   role: string;
-  idMember: string;
+  idMember: any;
+  member: Member;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'title', 'date', 'location', 'actions'];
@@ -27,23 +29,24 @@ export class EventsByMemberComponent implements OnInit, OnDestroy {
               private dialog: MatDialog,
               private token: TokenStorageService) { }
 
-  ngOnInit(): void {
-    this.currentUser = this.token.getUser();
-    console.log(this.currentUser.id);
-    if (!!this.currentUser)
-    {this.role = this.currentUser.roles[0];
-    }
-    else
-    {this.role = 'visitor';
-    }
-    this.fetchDataSource();
-  }
+   async ngOnInit(): Promise<void> {
+     this.currentUser = this.token.getUser();
+     this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
+     this.idMember = this.member.id;
+     console.log(this.idMember);
+     if (!!this.currentUser) {
+       this.role = this.currentUser.roles[0];
+     } else {
+       this.role = 'visitor';
+     }
+     this.fetchDataSource();
+   }
   ngOnDestroy(): void {
     this._onDestroy.next();
     this._onDestroy.complete();
   }
   fetchDataSource(): void {
-    this.memberService.getEventsByMemberId(this.currentUser.id).then(data => {
+    this.memberService.getEventsByMemberId(this.idMember).then(data => {
       this.dataSource = data;
     });    }
   onRemoveAccount(id: any): void {

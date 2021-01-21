@@ -43,6 +43,10 @@ export class MemberService {
     return this.httpClient.get<Member>(`${this.path}/membres/${id}`).toPromise();
   }
 
+  getMemberByCin(cin: string): Promise<Member> {
+    return this.httpClient.get<Member>(`${this.path}/membres/member/${cin}`).toPromise();
+  }
+
   /**
    * create a new member or update an old member.
    * a new member doesn't have an id

@@ -7,6 +7,7 @@ import {TokenStorageService} from '../../../services/token-storage.service';
 import {MemberService} from '../../../services/member.service';
 import {ConfirmDialogComponent} from '../../../@root/confirm-dialog/confirm-dialog.component';
 import {takeUntil} from 'rxjs/operators';
+import {Member} from '../../../models/member.model';
 
 @Component({
   selector: 'app-tools-by-member',
@@ -15,7 +16,8 @@ import {takeUntil} from 'rxjs/operators';
 })
 export class ToolsByMemberComponent implements OnInit, OnDestroy {
   currentUser: any;
-  idMember: string;
+  idMember: any;
+  member: Member;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'date', 'source', 'actions'];
@@ -27,8 +29,11 @@ export class ToolsByMemberComponent implements OnInit, OnDestroy {
               private token: TokenStorageService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void>  {
     this.currentUser = this.token.getUser();
+    this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
+    this.idMember = this.member.id;
+    console.log(this.idMember);
     this.fetchDataSource();
 
   }
@@ -39,7 +44,7 @@ export class ToolsByMemberComponent implements OnInit, OnDestroy {
   }
 
   fetchDataSource(): void {
-    this.memberService.getToolsByMemberId(this.currentUser.id).then(data => {
+    this.memberService.getToolsByMemberId(this.idMember).then(data => {
       this.dataSource = data;
     });
   }

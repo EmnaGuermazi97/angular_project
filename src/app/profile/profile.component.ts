@@ -17,7 +17,8 @@ interface Profession {
 export class ProfileComponent implements OnInit {
   currentUser: any;
   currentItemId: string;
-  item: Member;
+  idMember: any;
+  member: Member;
   form: FormGroup;
   isSuccessful = false;
   isSignUpFailed = false;
@@ -34,13 +35,15 @@ export class ProfileComponent implements OnInit {
               private memberService: MemberService) {
   }
 
-  ngOnInit(): void {
-    // to fixxxxxxxx
+  async ngOnInit(): Promise<void> {
     this.currentUser = this.token.getUser();
+    this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
+    this.idMember = this.member.id;
+    console.log(this.idMember);
     // this.currentItemId = this.activatedRoute.snapshot.params.id;
     if (!!this.currentUser.id) {
-      this.memberService.getMemberById(this.currentUser.id).then(item => {
-        this.item = item;
+      this.memberService.getMemberById(this.idMember).then(item => {
+        this.member = item;
         this.initForm(item);
       });
     } else {
@@ -61,7 +64,7 @@ export class ProfileComponent implements OnInit {
 
   }
   onSubmit(): void {
-    const objectToSubmit = {...this.item, ...this.form.value};
+    const objectToSubmit = {...this.member, ...this.form.value};
     console.log(objectToSubmit);
     this.memberService.saveMember(objectToSubmit).then(() =>
       this.router.navigate(['./members'])
