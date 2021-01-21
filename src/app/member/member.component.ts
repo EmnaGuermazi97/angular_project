@@ -35,6 +35,7 @@ export class MemberComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private token: TokenStorageService, private router: Router) {}
 
   ngOnInit(): void {
+    //window.location.reload();
     this.currentUser = this.token.getUser();
     const message = 'redirection successful';
     // @ts-ignore

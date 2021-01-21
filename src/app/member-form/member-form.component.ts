@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Member} from '../../models/member.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MemberService} from '../../services/member.service';
+import {User} from "../../models/user.model";
+import {RegisterComponent} from "../register/register.component";
 interface Profession {
   value: string;
   viewValue: string;
@@ -14,6 +16,7 @@ interface Profession {
 })
 export class MemberFormComponent implements OnInit {
   currentItemId: string;
+  cin: string ;
   item: Member;
   form: FormGroup;
   professions: Profession[] = [
@@ -27,24 +30,31 @@ export class MemberFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private memberService: MemberService,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.currentItemId = this.activatedRoute.snapshot.params.id;
+    this.cin= this.activatedRoute.snapshot.queryParams.cin;
+    console.log(this.cin);
+    console.log(this.activatedRoute.snapshot.queryParams.email);
+    // this.currentItemId = this.activatedRoute.snapshot.params.id;
     if (!!this.currentItemId) {
       this.memberService.getMemberById(this.currentItemId).then(item => {
         this.item = item;
         this.initForm(item);
       });
     } else {
+
       this.initForm(null);
+
     }
 
   }
 
   initForm(item: Member): void {
     this.form = new FormGroup({
-      cin: new FormControl(item?.cin, [Validators.required]),
+      cin: new FormControl(this.cin, [Validators.required]),
       prenom: new FormControl(item?.prenom, [Validators.required]),
       nom: new FormControl(item?.nom, [Validators.required]),
       email: new FormControl(item?.email, [Validators.required]),

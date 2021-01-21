@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        // this.reloadPage();
         this.redirectAfterLogin();
       },
       err => {
@@ -42,14 +41,10 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  reloadPage(): void {
-    window.location.reload();
-  }
-  redirectAfterLogin(): void {
-    const message = 'redirection successful';
-    // @ts-ignore
-    this.router.navigate(['./member']).then(console.log(message));
 
+  redirectAfterLogin(): void {
+
+    this.router.navigate(['./member']).then(r => "");
   }
 
 }
