@@ -36,6 +36,30 @@
           </div>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="cin">Cin</label>
+        <input
+          id="cin"
+          type="text"
+          class="form-control"
+          name="cin"
+          [(ngModel)]="form.cin"
+          required
+          minlength="8"
+          maxlength="8"
+          #cin="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && cin.invalid">
+          <div *ngIf="cin.errors.required">Cin is required</div>
+          <div *ngIf="cin.errors.minlength">
+            Cin  must be at 8 digits
+          </div>
+          <div *ngIf="cin.errors.maxlength">
+            Username must be at 8 digits
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input

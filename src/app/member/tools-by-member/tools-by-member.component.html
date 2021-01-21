@@ -1,1 +1,51 @@
-<p>tools-by-member works!</p>
+
+<div class="my-16" fxLayout="row" fxLayoutAlign="end center">
+  <button *ngIf="currentUser" mat-raised-button color="primary" routerLink="create">
+    <mat-icon class="s-24 mr-4">add</mat-icon>
+    Ajouter un nouveau outil
+  </button>
+
+</div>
+
+<h1>Liste des Outils Developées</h1>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100-p">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> ID</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> Date</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.date| date :'d MMMM y, HH:mm'}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="source">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> Source</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.source}} </td>
+  </ng-container>
+  <!--  &lt;!&ndash; Symbol Column &ndash;&gt;-->
+  <!--  <ng-container matColumnDef="createdDate">-->
+  <!--    <th mat-header-cell class="px-12" *matHeaderCellDef> Created Date</th>-->
+  <!--    <td mat-cell class="px-12" *matCellDef="let element">-->
+  <!--      {{element.createdDate | date :'d MMMM y, HH:mm'}}-->
+  <!--    </td>-->
+  <!--  </ng-container>-->
+  <ng-container matColumnDef="actions" stickyEnd>
+    <th mat-header-cell class="px-12 w-120" *matHeaderCellDef></th>
+    <td mat-cell class="px-12 w-120" *matCellDef="let element">
+      <button *ngIf="currentUser" mat-icon-button [routerLink]="element.id + '/edit'">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="currentUser" mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

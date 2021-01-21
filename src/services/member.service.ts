@@ -3,6 +3,9 @@ import {GLOBAL} from '../app/app-config';
 import {Member} from '../models/member.model';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import {Event} from '../models/event.model';
+import {Publication} from '../models/publication.model';
+import {Tool} from '../models/tool.model';
 
 
 
@@ -24,6 +27,16 @@ export class MemberService {
   getAllMembers(): Promise<Member[]> {
     return this.httpClient.get<Member[]>(`${this.path}/membres`).toPromise();
 
+  }
+  getPublicationsByMemberId(id: string): Promise<Publication[]> {
+    return this.httpClient.get<Publication[]>(`${this.path}/publications/member/${id}`).toPromise();
+
+  }
+  getEventsByMemberId(id: string): Promise<Event[]> {
+    return this.httpClient.get<Event[]>(`${this.path}/events/member/${id}`).toPromise();
+  }
+  getToolsByMemberId(id: string): Promise<Tool[]> {
+    return this.httpClient.get<Tool[]>(`${this.path}/tools/member/${id}`).toPromise();
   }
 
   getMemberById(id: string): Promise<Member> {

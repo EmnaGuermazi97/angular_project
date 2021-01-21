@@ -6,6 +6,7 @@ import {takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {MemberService} from '../../services/member.service';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -14,10 +15,11 @@ import {TokenStorageService} from '../../services/token-storage.service';
 export class EventListComponent implements OnInit, OnDestroy{
   currentUser: any;
   role: string;
+  dataSource: Event[] = []; // empty then it would be filled
+
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'title', 'date', 'location', 'actions'];
-  dataSource: Event[] = []; // empty then it would be filled
 
   constructor(private eventService: EventService, private dialog: MatDialog, private token: TokenStorageService) { }
 
@@ -41,7 +43,8 @@ export class EventListComponent implements OnInit, OnDestroy{
   fetchDataSource(): void {
     this.eventService.getAllEvents().then(data => {
       this.dataSource = data;
-    });  }
+    });
+}
   onRemoveAccount(id: any): void {
    // this.eventService.removeEventById(id).then(() => this.fetchDataSource());
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
