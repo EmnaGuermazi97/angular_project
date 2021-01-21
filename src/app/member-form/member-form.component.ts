@@ -17,6 +17,7 @@ interface Profession {
 export class MemberFormComponent implements OnInit {
   currentItemId: string;
   cin: string ;
+  email: string;
   item: Member;
   form: FormGroup;
   professions: Profession[] = [
@@ -36,8 +37,9 @@ export class MemberFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.cin= this.activatedRoute.snapshot.queryParams.cin;
+    this.email= this.activatedRoute.snapshot.queryParams.email;
     console.log(this.cin);
-    console.log(this.activatedRoute.snapshot.queryParams.email);
+    console.log(this.email);
     // this.currentItemId = this.activatedRoute.snapshot.params.id;
     if (!!this.currentItemId) {
       this.memberService.getMemberById(this.currentItemId).then(item => {
@@ -57,7 +59,7 @@ export class MemberFormComponent implements OnInit {
       cin: new FormControl(this.cin, [Validators.required]),
       prenom: new FormControl(item?.prenom, [Validators.required]),
       nom: new FormControl(item?.nom, [Validators.required]),
-      email: new FormControl(item?.email, [Validators.required]),
+      email: new FormControl(this.email, [Validators.required]),
       type_mbr: new FormControl(item?.type_mbr, [Validators.required]),
       cv: new FormControl(item?.cv, [Validators.required]),
     });
