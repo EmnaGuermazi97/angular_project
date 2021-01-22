@@ -50,6 +50,63 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'students',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: StudentListComponent,
+      },
+      {
+        path: 'create',
+        pathMatch: 'full',
+        component: StudentFormComponent,
+      },
+      {
+        path: 'student/edit',
+        pathMatch: 'full',
+        component: StudentFormComponent,
+      },
+      {
+        path: ':id/student/edit',
+        pathMatch: 'full',
+        component: StudentFormComponent,
+      },
+      {
+        path: '**',
+        redirectTo: '',
+      }
+    ]
+  },
+  {path: 'professors',
+  children: [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: ProfessorListComponent,
+  },
+  {
+    path: 'create',
+    pathMatch: 'full',
+    component: ProfessorFormComponent,
+  },
+  {
+    path: 'professor/edit',
+    pathMatch: 'full',
+    component: ProfessorFormComponent,
+  },
+  {
+    path: ':id/professor/edit',
+    pathMatch: 'full',
+    component: ProfessorFormComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  }
+]
+},
+  {
     path: 'events',
     children: [
       {
@@ -126,10 +183,10 @@ const routes: Routes = [
   { path: 'eventsByMember', component: EventsByMemberComponent },
   { path: 'toolsByMember', component: ToolsByMemberComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
-  { path: 'studentForm', component: StudentFormComponent },
-  { path: 'professorForm', component: ProfessorFormComponent },
-  { path: 'studentList', component: StudentListComponent },
-  { path: 'ProfessorList', component: ProfessorListComponent },
+  // { path: 'studentForm', component: StudentFormComponent },
+  // { path: 'professorForm', component: ProfessorFormComponent },
+  // { path: 'studentList', component: StudentListComponent },
+  // { path: 'ProfessorList', component: ProfessorListComponent },
 
 
 

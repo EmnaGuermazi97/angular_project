@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MemberService} from "../../../services/member.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {StudentModel} from "../../../models/student.model";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MemberService} from '../../../services/member.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {StudentModel} from '../../../models/student.model';
 
 @Component({
   selector: 'app-student-form',
@@ -11,18 +11,29 @@ import {StudentModel} from "../../../models/student.model";
 
 })
 export class StudentFormComponent implements OnInit {
-  //memberForm we get it from the register component after registering a user
+  // memberForm we get it from the register component after registering a user
   @Input() memberForm: FormGroup;
   fileToUpload: File = null;
-  currentItemId : string;
+  currentItemId: string;
   student: StudentModel;
+  itemSelected: StudentModel;
   form: FormGroup;
+  studentId: string;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private memberService: MemberService)
   {}
 
   async ngOnInit(): Promise<void> {
+    this.studentId = this.activatedRoute.snapshot.params.id;
+    console.log('this is the captered id from student list' + this.studentId);
+    if (!!this.studentId) {
+      console.log('welcome to studentFormComponent From studentList');
+      this.memberService.getMemberStudentById(this.studentId).then(item => {
+        this.student = item;
+        this.initFormUpdateFromStudent(this.student);
+      });
+    }
     this.currentItemId = this.activatedRoute.snapshot.queryParams.id;
     console.log(this.currentItemId);
     if (!!this.currentItemId) {
@@ -36,10 +47,9 @@ export class StudentFormComponent implements OnInit {
       console.log(this.form);
       this.initFormCreate(null);
     }
-
   }
 
-  initFormUpdate(student :StudentModel){
+  initFormUpdate(student: StudentModel): void{
     this.form = new FormGroup({
       cin: new FormControl(this.student?.cin, [Validators.required]),
       prenom: new FormControl(this.student?.prenom, [Validators.required]),
@@ -50,9 +60,9 @@ export class StudentFormComponent implements OnInit {
       dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
       sujet: new FormControl(this.student?.sujet, [Validators.required]),
       diplome: new FormControl(this.student?.diplome, [Validators.required]),
-    })
+    });
   }
-  initFormCreate(student :StudentModel){
+  initFormCreate(student: StudentModel): void{
     this.form = new FormGroup({
       cin: new FormControl(this.memberForm.value.cin, [Validators.required]),
       prenom: new FormControl(this.student?.prenom, [Validators.required]),
@@ -63,7 +73,20 @@ export class StudentFormComponent implements OnInit {
       dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
       sujet: new FormControl(this.student?.sujet, [Validators.required]),
       diplome: new FormControl(this.student?.diplome, [Validators.required]),
-    })
+    });
+  }
+  initFormUpdateFromStudent(student: StudentModel): void{
+    this.form = new FormGroup({
+      cin: new FormControl(this.student?.cin, [Validators.required]),
+      prenom: new FormControl(this.student?.prenom, [Validators.required]),
+      nom: new FormControl(this.student?.nom, [Validators.required]),
+      email: new FormControl(this.student?.email, [Validators.required]),
+      type_mbr: new FormControl('Etudiant', [Validators.required]),
+      cv: new FormControl(this.student?.cv, [Validators.required]),
+      dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
+      sujet: new FormControl(this.student?.sujet, [Validators.required]),
+      diplome: new FormControl(this.student?.diplome, [Validators.required]),
+    });
   }
   onSubmit(): void {
     const objectToSubmit = {...this.student, ...this.form.value};
