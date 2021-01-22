@@ -15,9 +15,11 @@ import {StudentModel} from "../../../models/student.model";
   export class ProfessorFormComponent implements OnInit {
   @Input() memberForm: FormGroup;
   fileToUpload: File = null;
-  currentItemId : string;
+  currentItemId: string;
   professor: ProfessorModel;
   form: FormGroup;
+  professorId: string;
+
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private memberService: MemberService)  {
@@ -25,6 +27,15 @@ import {StudentModel} from "../../../models/student.model";
   }
 
   async ngOnInit(): Promise<void> {
+    this.professorId = this.activatedRoute.snapshot.params.id;
+    console.log('this is the captered id from professor list' + this.professorId);
+    if (!!this.professorId) {
+      console.log('welcome to studentFormComponent From professorList');
+      this.memberService.getMemberProfessorById(this.professorId).then(item => {
+        this.professor = item;
+        this.initFormUpdateFromProfessor(this.professor);
+      });
+    }
     this.currentItemId = this.activatedRoute.snapshot.queryParams.id;
     console.log(this.currentItemId);
     if (!!this.currentItemId) {
@@ -38,7 +49,7 @@ import {StudentModel} from "../../../models/student.model";
       this.initFormCreate(null);
     }
   }
-  initFormUpdate(professor :ProfessorModel){
+  initFormUpdate(professor: ProfessorModel): void{
     this.form = new FormGroup({
       cin: new FormControl(this.professor?.cin, [Validators.required]),
       prenom: new FormControl(this.professor?.prenom, [Validators.required]),
@@ -50,7 +61,7 @@ import {StudentModel} from "../../../models/student.model";
       grade: new FormControl(this.professor?.grade, [Validators.required]),
     })
   }
-  initFormCreate(professor :ProfessorModel){
+  initFormCreate(professor: ProfessorModel): void{
     console.log(this.memberForm);
     this.form = new FormGroup({
       cin: new FormControl(this.memberForm.value.cin, [Validators.required]),
@@ -61,8 +72,20 @@ import {StudentModel} from "../../../models/student.model";
       cv: new FormControl(this.professor?.cv, [Validators.required]),
       etablissement: new FormControl(this.professor?.etablissement, [Validators.required]),
       grade: new FormControl(this.professor?.grade, [Validators.required]),
-    })
+    });
     console.log(this.form);
+  }
+  initFormUpdateFromProfessor(professor: ProfessorModel): void{
+    this.form = new FormGroup({
+      cin: new FormControl(this.professor?.cin, [Validators.required]),
+      prenom: new FormControl(this.professor?.prenom, [Validators.required]),
+      nom: new FormControl(this.professor?.nom, [Validators.required]),
+      email: new FormControl(this.professor?.email, [Validators.required]),
+      type_mbr: new FormControl('Etudiant', [Validators.required]),
+      cv: new FormControl(this.professor?.cv, [Validators.required]),
+      etablissement: new FormControl(this.professor?.etablissement, [Validators.required]),
+      grade: new FormControl(this.professor?.grade, [Validators.required]),
+    });
   }
   onSubmit(): void {
     const objectToSubmit = {...this.professor, ...this.form.value};

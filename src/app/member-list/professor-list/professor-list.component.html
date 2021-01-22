@@ -1,1 +1,74 @@
-<p>professor-list works!</p>
+<div class="my-16" fxLayout="row" fxLayoutAlign="end center">
+  <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-raised-button color="primary" routerLink="/register">
+    <mat-icon class="s-24 mr-4">add</mat-icon>
+    Ajouter un nouveau membre
+  </button>
+
+</div>
+
+<h1>Liste des membres du laboratoire</h1>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100-p">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> ID</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="cin">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> CIN</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.cin}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> Name</th>
+    <td mat-cell class="px-12" *matCellDef="let element">
+      <!--      &lt;!&ndash; TODO: change image src with the value of photo url&ndash;&gt;-->
+      <!--      <img class="s-48" style="width: 48px; height: 48px;"-->
+      <!--           [src]="'https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Avatar_icon_green.svg/1024px-Avatar_icon_green.svg.png'"-->
+      <!--           alt="photo"/>-->
+
+      {{element.nom + ' ' + element.prenom}}
+    </td>
+  </ng-container>
+  <!-- Weight  Column -->
+  <!--  <ng-container matColumnDef="type_mbr">-->
+  <!--    <th mat-header-cell class="px-12" *matHeaderCellDef> Profession</th>-->
+  <!--    <td mat-cell class="px-12" *matCellDef="let element"> {{element.type_mbr}} </td>-->
+
+  <!--  </ng-container>-->
+
+  <!-- Weight  Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> Email</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="cv">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> CV</th>
+    <td mat-cell class="px-12" *matCellDef="let element">
+      <a [href]="element.cv" target="_blank">
+        <mat-icon>picture_as_pdf</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions" stickyEnd>
+    <th mat-header-cell class="px-12 w-120" *matHeaderCellDef></th>
+    <td mat-cell class="px-12 w-120" *matCellDef="let element">
+      <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-icon-button [routerLink]="element.id + '/professor/edit'">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
