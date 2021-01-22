@@ -20,7 +20,9 @@ export class PublicationService {
   getPublicationById(id: string): Promise<Publication> {
     return this.httpClient.get<Publication>(`${this.path}/publications/${id}`).toPromise();
   }
-
+  getPublicationByTitle(title: string): Promise<Publication> {
+    return this.httpClient.get<Publication>(`${this.path}/publications/find/${title}`).toPromise();
+  }
   /**
    * create a new Publication or update an old Publication.
    * a new Publication doesn't have an id

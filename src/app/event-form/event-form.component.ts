@@ -3,6 +3,10 @@ import {Event} from '../../models/event.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../../services/event.service';
+import {Publication} from '../../models/publication.model';
+import {Member} from '../../models/member.model';
+import {MemberService} from '../../services/member.service';
+import {TokenStorageService} from '../../services/token-storage.service';
 interface Location {
   value: string;
   viewValue: string;
@@ -17,6 +21,15 @@ export class EventFormComponent implements OnInit {
   currentItemId: string;
   item: Event;
   form: FormGroup;
+  idEvent: any;
+  event: Event;
+  title: string;
+  errorMessage = '';
+
+  currentUser: any;
+  role: string;
+  idMember: any;
+  member: Member;
   locations: Location[] = [
     {value: 'Sfax', viewValue: 'Sfax'},
     {value: 'Tunis', viewValue: 'Tunis'},
@@ -28,9 +41,15 @@ export class EventFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private eventService: EventService,
+    private memberService: MemberService,
+    private token: TokenStorageService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.currentUser = this.token.getUser();
+    this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
+    this.idMember = this.member.id;
+    console.log(this.idMember);
     this.currentItemId = this.activatedRoute.snapshot.params.id;
     if (!!this.currentItemId) {
       this.eventService.getEventById(this.currentItemId).then(item => {
@@ -54,7 +73,15 @@ export class EventFormComponent implements OnInit {
     const objectToSubmit = {...this.item, ...this.form.value};
     console.log(objectToSubmit);
     this.eventService.saveEvent(objectToSubmit).then(() =>
-      this.router.navigate(['./events'])
+      this.assignEventToMember()
+      // this.router.navigate(['./events'])
     );
+  }
+  async assignEventToMember(): Promise<void> {
+    this.event = await this.eventService.getEventByTitle(this.title);
+    this.idEvent = this.event.id;
+    console.log(this.idEvent);
+    console.log(this.idMember);
+    await this.memberService.assignMemberToEvent(this.idEvent, this.idMember);
   }
 }

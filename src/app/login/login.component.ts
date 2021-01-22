@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
   redirectAfterLogin(): void {
 
-    this.router.navigate(['./member']).then(r => "");
+    this.router.navigate(['./member']).then(r => '');
   }
 
 }

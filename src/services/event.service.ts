@@ -3,6 +3,7 @@ import {environment} from '../environments/environment';
 import {Event} from '../models/event.model';
 import {HttpClient} from '@angular/common/http';
 import {GLOBAL} from '../app/app-config';
+import {Publication} from '../models/publication.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class EventService {
 
   getEventById(id: string): Promise<Event> {
     return this.httpClient.get<Event>(`${this.path}/events/${id}`).toPromise();
+  }
+  getEventByTitle(title: string): Promise<Event> {
+    return this.httpClient.get<Event>(`${this.path}/events/find/${title}`).toPromise();
   }
 
   /**

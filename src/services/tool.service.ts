@@ -3,6 +3,7 @@ import {GLOBAL} from '../app/app-config';
 import {Tool} from '../models/tool.model';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import {Publication} from '../models/publication.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,9 @@ export class ToolService {
 
   getToolById(id: string): Promise<Tool> {
     return this.httpClient.get<Tool>(`${this.path}/tools/${id}`).toPromise();
+  }
+  getToolBySource(source: string): Promise<Tool> {
+    return this.httpClient.get<Tool>(`${this.path}/tools/find/${source}`).toPromise();
   }
 
   /**

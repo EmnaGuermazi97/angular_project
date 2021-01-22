@@ -47,6 +47,8 @@ export class MemberService {
     return this.httpClient.get<Member>(`${this.path}/membres/member/${cin}`).toPromise();
   }
 
+
+
   /**
    * create a new member or update an old member.
    * a new member doesn't have an id
@@ -77,11 +79,21 @@ export class MemberService {
   // updateMemberProfessor(id: string, member: any): Promise<Member> {
   //   return this.httpClient.put<Member>(`${this.path}/membres/enseignant/${id}`, member).toPromise();
   // }
+  assignMemberToPublication(idMember: string, idPublication: string): Promise<void> {
+    return this.httpClient.get<void>(`${this.path}/membres/publication/assign`).toPromise();
+  }
+  assignMemberToEvent(idMember: string, idEvent: string): Promise<void> {
+    return this.httpClient.get<void>(`${this.path}/membres/event/assign`).toPromise();
+  }
+  assignMemberToTool(idMember: string, idTool: string): Promise<void> {
+    return this.httpClient.get<void>(`${this.path}/membres/tool/assign`).toPromise();
+  }
   removeMemberById(id: string): Promise<void> {
     // return this.httpClient.delete<void>('linkToRestApi').toPromise();
     this.placeholderMembers = this.placeholderMembers.filter(item => item.id !== id);
     return new Promise(resolve => resolve());
   }
+
 
 }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Route, Router} from "@angular/router";
-import {User} from "../../models/user.model";
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -9,13 +9,13 @@ import {User} from "../../models/user.model";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  constructor(private authService: AuthService, private router: Router) { }
+  static user: User;
   form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  private message: "erreur";
-  static user: User;
-  constructor(private authService: AuthService, private router: Router,) { }
+  private message: 'erreur';
 
   ngOnInit(): void {
   }
@@ -36,8 +36,8 @@ export class RegisterComponent implements OnInit {
     );
     this.redirect();
   }
-  redirect() : void {
-    this.router.navigate(['./members/create'], {queryParams: {cin: this.form.cin, email: this.form.email }}).then(r =>"");
+  redirect(): void {
+    this.router.navigate(['./members/create'], {queryParams: {cin: this.form.cin, email: this.form.email }}).then(r =>'');
      }
 
 }
