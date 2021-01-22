@@ -1,0 +1,32 @@
+<form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+
+  <div class="form-group">
+    <label for="prenom" [formGroup]="form"> Prénom</label>
+    <input type="text" class="form-control" formControlName="prenom" id="prenom" name="prenom">
+
+  </div>
+  <div class="form-group">
+    <label for="nom" [formGroup]="form"> Nom</label>
+    <input type="text" class="form-control" formControlName="nom" id="nom" name="nom">
+
+  </div>
+
+  <div class="form-group">
+    <label for="cv" [formGroup]="form"> Cv</label>
+    <input type="file" formControlName="cv" id="cv" name="cv" placeholder="Upload file" accept=".pdf,.doc,.docx">
+  </div>
+
+    <div class="form-group">
+      <label for="grade" [formGroup]="form"> Grade</label>
+      <input type="text" class="form-control" formControlName="grade" id="grade" name="grade">
+    </div>
+
+  <div class="form-group">
+    <label for="etablissement" [formGroup]="form"> Etablissement</label>
+    <input type="text" class="form-control" formControlName="etablissement" id="etablissement" name="etablissement">
+  </div>
+
+  <div class="form-element">
+    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid" >Submit</button>
+  </div>
+</form>

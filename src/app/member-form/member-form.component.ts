@@ -23,8 +23,6 @@ export class MemberFormComponent implements OnInit {
   professions: Profession[] = [
     {value: 'Etudiant', viewValue: 'Etudiant'},
     {value: 'Enseignant', viewValue: 'Enseignant'},
-
-
   ];
 
   constructor(
@@ -40,31 +38,25 @@ export class MemberFormComponent implements OnInit {
     this.email= this.activatedRoute.snapshot.queryParams.email;
     console.log(this.cin);
     console.log(this.email);
-    // this.currentItemId = this.activatedRoute.snapshot.params.id;
+    this.currentItemId = this.activatedRoute.snapshot.params.id;
     if (!!this.currentItemId) {
       this.memberService.getMemberById(this.currentItemId).then(item => {
         this.item = item;
         this.initForm(item);
       });
     } else {
-
       this.initForm(null);
-
     }
-
+    this.form.valueChanges.subscribe(newval => console.log(newval));
   }
 
   initForm(item: Member): void {
     this.form = new FormGroup({
       cin: new FormControl(this.cin, [Validators.required]),
-      prenom: new FormControl(item?.prenom, [Validators.required]),
-      nom: new FormControl(item?.nom, [Validators.required]),
       email: new FormControl(this.email, [Validators.required]),
       type_mbr: new FormControl(item?.type_mbr, [Validators.required]),
-      cv: new FormControl(item?.cv, [Validators.required]),
     });
   }
-
 
   onSubmit(): void {
     const objectToSubmit = {...this.item, ...this.form.value};

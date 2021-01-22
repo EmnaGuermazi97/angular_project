@@ -6,6 +6,8 @@ import {environment} from '../environments/environment';
 import {Event} from '../models/event.model';
 import {Publication} from '../models/publication.model';
 import {Tool} from '../models/tool.model';
+import {StudentModel} from '../models/student.model';
+import {ProfessorModel} from '../models/professor.model';
 
 
 
@@ -60,25 +62,14 @@ export class MemberService {
       return this.createMember(member);
     }
   }
-
   createMember(member: any): Promise<Member> {
     return this.httpClient.post<Member>(`${this.path}/membres/add`, member).toPromise();
   }
-  // createMemberStudent(member: any): Promise<Member> {
-  //   return this.httpClient.post<Member>(`${this.path}/membres/etudiant`, member).toPromise();
-  // }
-  // createMemberProfessor(member: any): Promise<Member> {
-  //   return this.httpClient.post<Member>(`${this.path}/membres/etudiant`, member).toPromise();
-  // }
+
   updateMember(id: string, member: any): Promise<Member> {
     return this.httpClient.put<Member>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
   }
-  // updateMemberStudent(id: string, member: any): Promise<Member> {
-  //   return this.httpClient.put<Member>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
-  // }
-  // updateMemberProfessor(id: string, member: any): Promise<Member> {
-  //   return this.httpClient.put<Member>(`${this.path}/membres/enseignant/${id}`, member).toPromise();
-  // }
+
   assignMemberToPublication(idMember: string, idPublication: string): Promise<void> {
     return this.httpClient.get<void>(`${this.path}/membres/publication/assign`).toPromise();
   }
@@ -88,6 +79,7 @@ export class MemberService {
   assignMemberToTool(idMember: string, idTool: string): Promise<void> {
     return this.httpClient.get<void>(`${this.path}/membres/tool/assign`).toPromise();
   }
+
   removeMemberById(id: string): Promise<void> {
     // return this.httpClient.delete<void>('linkToRestApi').toPromise();
     this.placeholderMembers = this.placeholderMembers.filter(item => item.id !== id);
@@ -95,5 +87,34 @@ export class MemberService {
   }
 
 
+
+
+  createMemberProfessor(member: any): Promise<ProfessorModel> {
+    return this.httpClient.post<ProfessorModel>(`${this.path}/membres/enseignant`, member).toPromise();
+  }
+  updateMemberProfessor(id: string, member: any): Promise<ProfessorModel> {
+    return this.httpClient.put<ProfessorModel>(`${this.path}/membres/enseignant/${id}`, member).toPromise();
+  }
+  saveMemberProfessor(professor: any): Promise<ProfessorModel> {
+    if (!!professor.id) {
+      return this.updateMemberProfessor(professor.id, professor);
+    } else {
+      return this.createMemberProfessor(professor);
+    }
+  }
+
+  createMemberStudent(member: any): Promise<StudentModel> {
+    return this.httpClient.post<StudentModel>(`${this.path}/membres/etudiant`, member).toPromise();
+  }
+  updateMemberStudent(id: string, member: any): Promise<StudentModel> {
+    return this.httpClient.put<StudentModel>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
+  }
+  saveMemberStudent(student: any): Promise<StudentModel> {
+    if (!!student.id) {
+      return this.updateMemberStudent(student.id, student);
+    } else {
+      return this.createMemberStudent(student);
+    }
+  }
 }
 

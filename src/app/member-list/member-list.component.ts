@@ -39,8 +39,12 @@ export class MemberListComponent implements OnInit, OnDestroy {
   }
   fetchDataSource(): void {
     this.memberService.getAllMembers().then(data => {
+      console.log(data);
       this.dataSource = data;
-    });  }
+      console.log(this.dataSource);
+    });
+
+  }
 
   onRemoveAccount(id: any): void {
   //  this.memberService.removeMemberById(id).then(() => this.fetchDataSource());

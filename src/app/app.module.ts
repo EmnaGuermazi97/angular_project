@@ -40,6 +40,8 @@ import { EventsByMemberComponent } from './member/events-by-member/events-by-mem
 import { ToolsByMemberComponent } from './member/tools-by-member/tools-by-member.component';
 import {AuthorsComponent} from './publication-form/authors/authors.component';
 
+import { StudentFormComponent } from './member-form/student-form/student-form.component';
+import { ProfessorFormComponent } from './member-form/professor-form/professor-form.component';
 
 
 
@@ -65,7 +67,9 @@ import {AuthorsComponent} from './publication-form/authors/authors.component';
     PublicationsByMemberComponent,
     EventsByMemberComponent,
     ToolsByMemberComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    StudentFormComponent,
+    ProfessorFormComponent
   ],
   imports: [
     BrowserModule,

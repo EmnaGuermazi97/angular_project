@@ -1,0 +1,42 @@
+<p>student-form works!</p>
+<form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+
+  <div class="form-group">
+    <label for="prenom" [formGroup]="form"> Prénom</label>
+    <input type="text" class="form-control" formControlName="prenom" id="prenom" name="prenom">
+
+  </div>
+  <div class="form-group">
+    <label for="nom" [formGroup]="form"> Nom</label>
+    <input type="text" class="form-control" formControlName="nom" id="nom" name="nom">
+
+  </div>
+
+  <div class="form-group">
+    <label for="cv" [formGroup]="form"> Cv</label>
+    <input type="text" class="form-control" formControlName="cv" id="cv" name="cv">
+  </div>
+<!--  <div class="form-group">-->
+<!--    <label for="dateInscription" [formGroup]="form"> Date Inscription</label>-->
+<!--    <input type="text" class="form-control" formControlName="dateInscription" id="dateInscription" name="dateInscription">-->
+<!--  </div>-->
+<!--  -->
+  <mat-form-field appearance="fill">
+    <mat-label>Date Inscription</mat-label>
+    <input matInput [matDatepicker]="picker" [formGroup]="form" formControlName="dateInscription">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="form-group">
+    <label for="sujet" [formGroup]="form"> Sujet</label>
+    <input type="text" class="form-control" formControlName="sujet" id="sujet" name="sujet">
+  </div>
+  <div class="form-group">
+    <label for="diplome" [formGroup]="form"> Diplome</label>
+    <input type="text" class="form-control" formControlName="diplome" id="diplome" name="diplome">
+  </div>
+  <div class="form-element">
+    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid" >Submit</button>
+  </div>
+</form>
