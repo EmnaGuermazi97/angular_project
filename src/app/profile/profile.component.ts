@@ -21,13 +21,13 @@ export class ProfileComponent implements OnInit {
   member: Member;
   form: FormGroup;
   profile: any;
-  isSuccessful = false;
-  isSignUpFailed = false;
+  // isSuccessful = false;
+  // isSignUpFailed = false;
   errorMessage = '';
-  professions: Profession[] = [
-    {value: 'Etudiant', viewValue: 'Etudiant'},
-    {value: 'Enseignant', viewValue: 'Enseignant'},
-  ];
+  // professions: Profession[] = [
+  //   {value: 'Etudiant', viewValue: 'Etudiant'},
+  //   {value: 'Enseignant', viewValue: 'Enseignant'},
+  // ];
 
   constructor(private token: TokenStorageService,
               private router: Router,
