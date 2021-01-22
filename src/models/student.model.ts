@@ -1,4 +1,4 @@
-import {ProfessorModel} from "./professor.model";
+import {ProfessorModel} from './professor.model';
 
 export interface StudentModel {
   id: string;
@@ -15,5 +15,6 @@ export interface StudentModel {
   dateInscription: Date ;
   sujet: string;
   diplome: string ;
-  encadrant : ProfessorModel;
+  encadrant: any;
+  encadrantName: string;
 }

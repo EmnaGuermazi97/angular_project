@@ -18,9 +18,11 @@ import {MemberChecklistTreeComponent} from './member-checklist-tree/member-check
 import {PublicationsByMemberComponent} from './member/publications-by-member/publications-by-member.component';
 import {EventsByMemberComponent} from './member/events-by-member/events-by-member.component';
 import {ToolsByMemberComponent} from './member/tools-by-member/tools-by-member.component';
-import {MemberEditFormComponent} from "./member-edit-form/member-edit-form.component";
-import {StudentFormComponent} from "./member-form/student-form/student-form.component";
-import {ProfessorFormComponent} from "./member-form/professor-form/professor-form.component";
+import {MemberEditFormComponent} from './member-edit-form/member-edit-form.component';
+import {StudentFormComponent} from './member-form/student-form/student-form.component';
+import {ProfessorFormComponent} from './member-form/professor-form/professor-form.component';
+import {StudentListComponent} from './member-list/student-list/student-list.component';
+import {ProfessorListComponent} from './member-list/professor-list/professor-list.component';
 
 const routes: Routes = [
   {
@@ -126,6 +128,10 @@ const routes: Routes = [
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
   { path: 'studentForm', component: StudentFormComponent },
   { path: 'professorForm', component: ProfessorFormComponent },
+  { path: 'studentList', component: StudentListComponent },
+  { path: 'ProfessorList', component: ProfessorListComponent },
+
+
 
   {
     path: '**',
