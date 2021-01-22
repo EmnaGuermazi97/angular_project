@@ -3,7 +3,6 @@ import {Event} from '../../models/event.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../../services/event.service';
-import {Publication} from '../../models/publication.model';
 import {Member} from '../../models/member.model';
 import {MemberService} from '../../services/member.service';
 import {TokenStorageService} from '../../services/token-storage.service';
@@ -72,6 +71,8 @@ export class EventFormComponent implements OnInit {
   onSubmit(): void {
     const objectToSubmit = {...this.item, ...this.form.value};
     console.log(objectToSubmit);
+    console.log(this.form.value.title);
+    this.title = this.form.value.title;
     this.eventService.saveEvent(objectToSubmit).then(() =>
       this.assignEventToMember()
       // this.router.navigate(['./events'])

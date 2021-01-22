@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Tool} from '../../models/tool.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToolService} from '../../services/tool.service';
-import {Publication} from '../../models/publication.model';
 import {MemberService} from '../../services/member.service';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {Member} from '../../models/member.model';
