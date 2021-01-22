@@ -85,10 +85,6 @@ export class MemberService {
     this.placeholderMembers = this.placeholderMembers.filter(item => item.id !== id);
     return new Promise(resolve => resolve());
   }
-
-
-
-
   createMemberProfessor(member: any): Promise<ProfessorModel> {
     return this.httpClient.post<ProfessorModel>(`${this.path}/membres/enseignant`, member).toPromise();
   }
@@ -115,6 +111,13 @@ export class MemberService {
     } else {
       return this.createMemberStudent(student);
     }
+  }
+
+  getMemberStudentById(id: string): Promise<StudentModel> {
+  return this.httpClient.get<StudentModel>(`${this.path}/membres/student/${id}`).toPromise();
+}
+  getMemberProfessorById(id: string): Promise<ProfessorModel> {
+    return this.httpClient.get<ProfessorModel>(`${this.path}/membres/professor/${id}`).toPromise();
   }
 }
 

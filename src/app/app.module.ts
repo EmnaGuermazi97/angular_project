@@ -42,6 +42,7 @@ import {AuthorsComponent} from './publication-form/authors/authors.component';
 
 import { StudentFormComponent } from './member-form/student-form/student-form.component';
 import { ProfessorFormComponent } from './member-form/professor-form/professor-form.component';
+import { MemberEditFormComponent } from './member-edit-form/member-edit-form.component';
 
 
 
@@ -69,7 +70,8 @@ import { ProfessorFormComponent } from './member-form/professor-form/professor-f
     ToolsByMemberComponent,
     AuthorsComponent,
     StudentFormComponent,
-    ProfessorFormComponent
+    ProfessorFormComponent,
+    MemberEditFormComponent
   ],
   imports: [
     BrowserModule,
