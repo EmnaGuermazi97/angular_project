@@ -45,6 +45,7 @@ import { ProfessorFormComponent } from './member-form/professor-form/professor-f
 import { MemberEditFormComponent } from './member-edit-form/member-edit-form.component';
 import { StudentListComponent } from './member-list/student-list/student-list.component';
 import { ProfessorListComponent } from './member-list/professor-list/professor-list.component';
+import { SupervisionTeacherMemberComponent } from './supervision-teacher-member/supervision-teacher-member.component';
 
 
 
@@ -75,7 +76,8 @@ import { ProfessorListComponent } from './member-list/professor-list/professor-l
     ProfessorFormComponent,
     MemberEditFormComponent,
     StudentListComponent,
-    ProfessorListComponent
+    ProfessorListComponent,
+    SupervisionTeacherMemberComponent
   ],
   imports: [
     BrowserModule,
