@@ -83,6 +83,8 @@ export class EventFormComponent implements OnInit {
     this.idEvent = this.event.id;
     console.log(this.idEvent);
     console.log(this.idMember);
-    await this.memberService.assignMemberToEvent(this.idEvent, this.idMember);
+    await this.memberService.assignMemberToEvent( this.idMember, this.idEvent);
+    await this.router.navigate(['./events'])
+
   }
 }

@@ -78,14 +78,14 @@ export class MemberService {
     return this.httpClient.put<Member>(`${this.path}/membres/etudiant/${id}`, member).toPromise();
   }
 
-  assignMemberToPublication(idMember: string, idPublication: string): Promise<void> {
-    return this.httpClient.get<void>(`${this.path}/membres/publication/assign`).toPromise();
+  assignMemberToPublication(idMember: string, idPublication: string): Promise<any> {
+    return this.httpClient.post<any>(`${this.path}/membres/publication/assign?idauteur=${idMember}&idpub=${idPublication}`,{idMember, idPublication}).toPromise();
   }
-  assignMemberToEvent(idMember: string, idEvent: string): Promise<void> {
-    return this.httpClient.get<void>(`${this.path}/membres/event/assign`).toPromise();
+  assignMemberToEvent(idMember: string, idEvent: string): Promise<any> {
+    return this.httpClient.post<any>(`${this.path}/membres/event/assign?idauteur=${idMember}&idpub=${idEvent}`,{idMember, idEvent}).toPromise();
   }
-  assignMemberToTool(idMember: string, idTool: string): Promise<void> {
-    return this.httpClient.get<void>(`${this.path}/membres/tool/assign`).toPromise();
+  assignMemberToTool(idMember: string, idTool: string): Promise<any> {
+    return this.httpClient.post<any>(`${this.path}/membres/tool/assign?idauteur=${idMember}&idpub=${idTool}`,{idMember, idTool}).toPromise();
   }
 
   removeMemberById(id: string): Promise<void> {

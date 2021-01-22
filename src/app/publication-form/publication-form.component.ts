@@ -63,7 +63,7 @@ export class PublicationFormComponent implements OnInit {
     const objectToSubmit = {...this.item, ...this.form.value};
     console.log(this.form.value.titre);
     this.title = this.form.value.titre;
-    this.publicationService.savePublication(objectToSubmit).then(() =>
+    await this.publicationService.savePublication(objectToSubmit).then(() =>
       this.assignPublicationToMember()
  );
     // await this.router.navigate(['./publications']);
@@ -74,6 +74,7 @@ export class PublicationFormComponent implements OnInit {
     this.idPublication = this.publication.id;
     console.log(this.idPublication);
     console.log(this.idMember);
-    await this.memberService.assignMemberToPublication(this.idPublication, this.idMember);
+    await this.memberService.assignMemberToPublication(this.idMember, this.idPublication);
+    await this.router.navigate(['./publications']);
   }
 }

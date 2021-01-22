@@ -72,8 +72,8 @@ export class ToolFormComponent implements OnInit {
     this.idTool = this.tool.id;
     console.log(this.idTool);
     console.log(this.idMember);
-    await this.memberService.assignMemberToTool(this.idTool, this.idMember);
-    // this.router.navigate(['./tools'])
+    await this.memberService.assignMemberToTool( this.idMember, this.idTool);
+    await this.router.navigate(['./tools'])
 
   }
 }
