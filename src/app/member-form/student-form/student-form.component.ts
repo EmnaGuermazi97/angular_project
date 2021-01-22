@@ -13,6 +13,7 @@ import {StudentModel} from "../../../models/student.model";
 export class StudentFormComponent implements OnInit {
   //memberForm we get it from the register component after registering a user
   @Input() memberForm: FormGroup;
+  fileToUpload: File = null;
   currentItemId : string;
   student: StudentModel;
   form: FormGroup;
@@ -21,21 +22,20 @@ export class StudentFormComponent implements OnInit {
               private memberService: MemberService)
   {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.currentItemId = this.activatedRoute.snapshot.queryParams.id;
     console.log(this.currentItemId);
     if (!!this.currentItemId) {
-      this.memberService.getMemberStudentById(this.currentItemId).then(item => {
-        this.student = item;
-      });
+      this.student = await this.memberService.getMemberStudentById(this.currentItemId);
+
       console.log(this.student);
       this.initFormUpdate(this.student);
       console.log(this.form);
-    }
-    else{
+    } else {
       console.log(this.memberForm);
       console.log(this.form);
-      this.initFormCreate(null);}
+      this.initFormCreate(null);
+    }
 
   }
 

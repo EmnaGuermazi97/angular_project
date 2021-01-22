@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   idMember: any;
   member: Member;
   form: FormGroup;
+  profile: any;
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -41,33 +42,68 @@ export class ProfileComponent implements OnInit {
     this.idMember = this.member.id;
     console.log(this.idMember);
     // this.currentItemId = this.activatedRoute.snapshot.params.id;
-    if (!!this.currentUser.id) {
-      this.memberService.getMemberById(this.idMember).then(item => {
-        this.member = item;
-        this.initForm(item);
-      });
-    } else {
-      this.initForm(null);
+    // if (!!this.currentUser.id) {
+    //   this.memberService.getMemberById(this.idMember).then(item => {
+    //     this.member = item;
+    //     this.initForm(item);
+    //   });
+    // } else {
+    //   this.initForm(null);
+    // }
+    if (!!await this.memberService.getMemberStudentById(this.idMember)) {
+
+      this.profile = await this.memberService.getMemberStudentById(this.idMember);
+      console.log(this.profile)
+      if (!!this.profile.grade) {
+        this.member.type_mbr = 'Enseignant';
+        console.log(this.profile.type_mbr)
+        this.redirectProfessor();
+      } else {
+        this.member.type_mbr = 'Etudiant';
+        console.log(this.member.type_mbr)
+        this.redirectStudent();
+      }
+      console.log(this.member.type_mbr)
     }
+    // }
+
+    // }
+
+    // initForm(item: Member): void {
+    //   this.form = new FormGroup({
+    //     cin: new FormControl(item?.cin, [Validators.required]),
+    //     prenom: new FormControl(item?.prenom, [Validators.required]),
+    //     nom: new FormControl(item?.nom, [Validators.required]),
+    //     email: new FormControl(item?.email, [Validators.required]),
+    //     type_mbr: new FormControl(item?.type_mbr, [Validators.required]),
+    //     cv: new FormControl(item?.cv, [Validators.required]),
+    //   });
 
   }
 
-  initForm(item: Member): void {
-    this.form = new FormGroup({
-      cin: new FormControl(item?.cin, [Validators.required]),
-      prenom: new FormControl(item?.prenom, [Validators.required]),
-      nom: new FormControl(item?.nom, [Validators.required]),
-      email: new FormControl(item?.email, [Validators.required]),
-      type_mbr: new FormControl(item?.type_mbr, [Validators.required]),
-      cv: new FormControl(item?.cv, [Validators.required]),
-    });
+  redirectStudent(): void {
+    this.router.navigate(['./studentForm'], {
+      queryParams: {
+        id: this.member.id,
+        type_mbr: this.member.type_mbr
+      }
+    }).then(r => '');
+  }
 
+  redirectProfessor(): void {
+    this.router.navigate(['./professorForm'], {
+      queryParams: {
+        id: this.member.id,
+        type_mbr: this.member.type_mbr
+      }
+    }).then(r => '');
   }
-  onSubmit(): void {
-    const objectToSubmit = {...this.member, ...this.form.value};
-    console.log(objectToSubmit);
-    this.memberService.saveMember(objectToSubmit).then(() =>
-      this.router.navigate(['./members'])
-    );
-  }
+
+  // onSubmit(): void {
+  //   const objectToSubmit = {...this.member, ...this.form.value};
+  //   console.log(objectToSubmit);
+  //   this.memberService.saveMember(objectToSubmit).then(() =>
+  //     this.router.navigate(['./members'])
+  //   );
+  // }
 }

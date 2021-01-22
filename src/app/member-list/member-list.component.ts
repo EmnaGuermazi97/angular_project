@@ -19,7 +19,7 @@ export class MemberListComponent implements OnInit, OnDestroy {
   role: string;
   // tslint:disable-next-line:variable-name
   protected _onDestroy = new Subject<void>();
-  displayedColumns: string[] = ['id', 'cin', 'name', 'email', 'type_mbr', 'cv', 'actions'];
+  displayedColumns: string[] = ['id', 'cin', 'name', 'email', 'cv', 'actions'];
   dataSource: Member[] = []; // empty then it would be filled
   constructor(private memberService: MemberService, private dialog: MatDialog, private token: TokenStorageService) { }
 

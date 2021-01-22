@@ -1,7 +1,7 @@
-{{ currentUser.accessToken.substring(0, 20) }} ...
+<!--{{ currentUser.accessToken.substring(0, 20) }} ...-->
 
 <div class="my-16" fxLayout="row" fxLayoutAlign="end center">
-  <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-raised-button color="primary" routerLink="/register">
+  <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-raised-button color="primary" routerLink="/create">
     <mat-icon class="s-24 mr-4">add</mat-icon>
     Ajouter un nouveau membre
   </button>
@@ -42,11 +42,11 @@
     </td>
   </ng-container>
   <!-- Weight  Column -->
-  <ng-container matColumnDef="type_mbr">
-    <th mat-header-cell class="px-12" *matHeaderCellDef> Profession</th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.type_mbr}} </td>
+<!--  <ng-container matColumnDef="type_mbr">-->
+<!--    <th mat-header-cell class="px-12" *matHeaderCellDef> Profession</th>-->
+<!--    <td mat-cell class="px-12" *matCellDef="let element"> {{element.type_mbr}} </td>-->
 
-  </ng-container>
+<!--  </ng-container>-->
 
   <!-- Weight  Column -->
   <ng-container matColumnDef="email">

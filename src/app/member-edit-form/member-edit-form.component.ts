@@ -43,5 +43,3 @@ export class MemberEditFormComponent implements OnInit {
     this.router.navigate(['./professorForm'], {queryParams: {id: this.member.id, type_mbr: this.member.type_mbr }}).then(r =>'');
   }
 }
-
-
