@@ -38,7 +38,8 @@ import { MemberChecklistTreeComponent } from './member-checklist-tree/member-che
 import { PublicationsByMemberComponent } from './member/publications-by-member/publications-by-member.component';
 import { EventsByMemberComponent } from './member/events-by-member/events-by-member.component';
 import { ToolsByMemberComponent } from './member/tools-by-member/tools-by-member.component';
-
+import { StudentFormComponent } from './member-form/student-form/student-form.component';
+import { ProfessorFormComponent } from './member-form/professor-form/professor-form.component';
 
 
 
@@ -63,7 +64,9 @@ import { ToolsByMemberComponent } from './member/tools-by-member/tools-by-member
     MemberChecklistTreeComponent,
     PublicationsByMemberComponent,
     EventsByMemberComponent,
-    ToolsByMemberComponent
+    ToolsByMemberComponent,
+    StudentFormComponent,
+    ProfessorFormComponent
   ],
   imports: [
     BrowserModule,

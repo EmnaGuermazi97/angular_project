@@ -5,41 +5,32 @@
   <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
     <div class="form-group">
       <label for="cin"> Cin</label>
-      <input type="text" class="form-control" formControlName="cin" id="cin" name="cin">
-    </div>
-
-    <div class="form-group">
-      <label for="prenom"> Prénom</label>
-      <input type="text" class="form-control" formControlName="prenom" id="prenom" name="prenom">
-
-    </div>
-    <div class="form-group">
-      <label for="nom"> Nom</label>
-      <input type="text" class="form-control" formControlName="nom" id="nom" name="nom">
-
+      <input type="text" class="form-control" formControlName="cin" id="cin" name="cin" disabled>
     </div>
     <div class="form-group">
       <label for="email"> Email</label>
-      <input type="text" class="form-control" formControlName="email" id="email" name="email">
-
+      <input type="text" class="form-control" formControlName="email" id="email" name="email" disabled>
     </div>
-    <div class="form-group">
-      <label for="cv"> Cv</label>
-      <input type="text" class="form-control" formControlName="cv" id="cv" name="cv">
-    </div>
-
     <mat-form-field appearance="fill">
       <mat-label>Profession</mat-label>
       <mat-select formControlName="type_mbr">
-        <mat-option *ngFor="let profession of professions" [value]="profession.value">
+        <mat-option *ngFor="let profession of professions" [value]="profession.value" >
           {{profession.viewValue}}
         </mat-option>
-      </mat-select>
+      </mat-select >
     </mat-form-field>
+    <div *ngIf="form.value.type_mbr=='Etudiant'">
+      <app-student-form [memberForm]="form"></app-student-form>
 
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
     </div>
+    <div *ngIf="form.value.type_mbr=='Enseignant'">
+      <app-professor-form [memberForm]="form"></app-professor-form>
+    </div>
+
+
+<!--    <div class="form-element">-->
+<!--      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid" >Submit</button>-->
+<!--    </div>-->
 
   </form>
 </div>
