@@ -30,6 +30,14 @@ export class MemberService {
     return this.httpClient.get<Member[]>(`${this.path}/membres`).toPromise();
 
   }
+  getAllStudents(): Promise<StudentModel[]> {
+    return this.httpClient.get<StudentModel[]>(`${this.path}/membres/etudients`).toPromise();
+
+  }
+  getAllProfessors(): Promise<ProfessorModel[]> {
+    return this.httpClient.get<ProfessorModel[]>(`${this.path}/membres/enseignants`).toPromise();
+
+  }
   getPublicationsByMemberId(id: string): Promise<Publication[]> {
     return this.httpClient.get<Publication[]>(`${this.path}/publications/member/${id}`).toPromise();
 

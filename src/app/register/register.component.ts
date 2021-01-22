@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     this.redirect();
   }
   redirect(): void {
-    this.router.navigate(['./members/create'], {queryParams: {cin: this.form.cin, email: this.form.email }}).then(r =>'');
+    this.router.navigate(['./members/create'], {queryParams: {cin: this.form.cin, email: this.form.email }}).then(r => '');
      }
 
 }
