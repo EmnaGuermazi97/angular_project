@@ -95,9 +95,8 @@ export class MemberService {
       {idStudent, idProfessor}).toPromise();
   }
   removeMemberById(id: string): Promise<void> {
-    // return this.httpClient.delete<void>('linkToRestApi').toPromise();
-    this.placeholderMembers = this.placeholderMembers.filter(item => item.id !== id);
-    return new Promise(resolve => resolve());
+    return this.httpClient.delete<void>(`${this.path}/membres/delete/${id}`).toPromise();
+
   }
   createMemberProfessor(member: any): Promise<ProfessorModel> {
     return this.httpClient.post<ProfessorModel>(`${this.path}/membres/enseignant`, member).toPromise();
