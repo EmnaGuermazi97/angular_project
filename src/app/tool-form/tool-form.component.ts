@@ -25,6 +25,8 @@ export class ToolFormComponent implements OnInit {
   idMember: any;
   member: Member;
   members: Member[] = []; // empty then it would be filled
+  panelOpenState = false;
+
 
   constructor(
     private router: Router,
@@ -35,7 +37,7 @@ export class ToolFormComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    await this.fetchDataSource()
+    await this.fetchDataSource();
     this.currentUser = this.token.getUser();
     this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
     this.idMember = this.member.id;

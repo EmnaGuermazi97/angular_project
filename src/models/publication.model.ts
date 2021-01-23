@@ -5,4 +5,5 @@ export interface Publication {
   dateApparition: string;
   lien: string;
   sourcePdf: string;
+  membersIds: any;
 }

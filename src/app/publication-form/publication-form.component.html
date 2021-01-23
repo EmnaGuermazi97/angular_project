@@ -34,32 +34,45 @@
     </div>
 <!--<app-authors></app-authors>-->
 
-    <mat-accordion>
-      <!-- #docregion basic-panel -->
-      <!-- #docregion hide-toggle -->
-      <mat-expansion-panel hideToggle>
-        <!-- #enddocregion hide-toggle -->
+<!--    <mat-accordion>-->
+<!--      &lt;!&ndash; #docregion basic-panel &ndash;&gt;-->
+<!--      &lt;!&ndash; #docregion hide-toggle &ndash;&gt;-->
+<!--      <mat-expansion-panel hideToggle>-->
+<!--        &lt;!&ndash; #enddocregion hide-toggle &ndash;&gt;-->
 
-        <p>This is the primary content of the panel.</p>
-      </mat-expansion-panel>
-      <!-- #enddocregion basic-panel -->
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
+<!--        <p>This is the primary content of the panel.</p>-->
+<!--      </mat-expansion-panel>-->
+<!--      &lt;!&ndash; #enddocregion basic-panel &ndash;&gt;-->
+<!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                           (closed)="panelOpenState = false">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-panel-title>-->
+<!--            Membres qui ont participé dans la publication:-->
+<!--          </mat-panel-title>-->
+<!--          &lt;!&ndash;        <mat-panel-description>&ndash;&gt;-->
+<!--          &lt;!&ndash;          Currently I am {{panelOpenState ? 'open' : 'closed'}}&ndash;&gt;-->
+<!--          &lt;!&ndash;        </mat-panel-description>&ndash;&gt;-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <div *ngFor="let fullMemberName of members" >-->
+<!--          <mat-checkbox [value]="fullMemberName" (click)="onClick($event)" >-->
+<!--            {{fullMemberName.nom + ' '+ fullMemberName.prenom}}-->
+<!--          </mat-checkbox>-->
+<!--        </div>-->
+    <br>
+        <div class="form-group">
+          <label for="members">
             Membres qui ont participé dans la publication:
-          </mat-panel-title>
-          <!--        <mat-panel-description>-->
-          <!--          Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
-          <!--        </mat-panel-description>-->
-        </mat-expansion-panel-header>
-        <div *ngFor="let fullMemberName of members" >
-          <mat-checkbox [value]="fullMemberName" (click)="onClick($event)" >
+          </label>
+          <hr>
+        <mat-select formControlName="membersIds" id="members" multiple>
+          <mat-option *ngFor="let fullMemberName of members" [value]="fullMemberName.id" (click)="onClick($event)" >
             {{fullMemberName.nom + ' '+ fullMemberName.prenom}}
-          </mat-checkbox>
+          </mat-option>
+        </mat-select>
         </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+<!--      </mat-expansion-panel>-->
+<!--    </mat-accordion>-->
+
 <br>
     <div class="form-element">
       <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>

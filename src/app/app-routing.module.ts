@@ -183,11 +183,14 @@ const routes: Routes = [
   { path: 'publicationsByMember', component: PublicationsByMemberComponent },
   { path: 'eventsByMember', component: EventsByMemberComponent },
   { path: 'toolsByMember', component: ToolsByMemberComponent },
+  { path: 'publicationsByMember/publications/create', component: PublicationsByMemberComponent },
+  { path: 'eventsByMember/events/create', component: EventFormComponent },
+  { path: 'toolsByMember/tools/create', component: ToolFormComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
   { path: 'assign/student/teacher', component: SupervisionTeacherMemberComponent },
 
-  // { path: 'studentForm', component: StudentFormComponent },
-  // { path: 'professorForm', component: ProfessorFormComponent },
+  { path: 'studentForm', component: StudentFormComponent },
+  { path: 'professorForm', component: ProfessorFormComponent },
   // { path: 'studentList', component: StudentListComponent },
   // { path: 'ProfessorList', component: ProfessorListComponent },
 

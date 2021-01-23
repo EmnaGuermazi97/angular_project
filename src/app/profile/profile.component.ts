@@ -53,17 +53,17 @@ export class ProfileComponent implements OnInit {
     if (!!await this.memberService.getMemberStudentById(this.idMember)) {
 
       this.profile = await this.memberService.getMemberStudentById(this.idMember);
-      console.log(this.profile)
+      console.log(this.profile);
       if (!!this.profile.grade) {
         this.member.type_mbr = 'Enseignant';
-        console.log(this.profile.type_mbr)
+        console.log(this.profile.type_mbr);
         this.redirectProfessor();
       } else {
         this.member.type_mbr = 'Etudiant';
-        console.log(this.member.type_mbr)
+        console.log(this.member.type_mbr);
         this.redirectStudent();
       }
-      console.log(this.member.type_mbr)
+      console.log(this.member.type_mbr);
     }
     // }
 
