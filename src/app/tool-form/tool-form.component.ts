@@ -24,6 +24,7 @@ export class ToolFormComponent implements OnInit {
   role: string;
   idMember: any;
   member: Member;
+  members: Member[] = []; // empty then it would be filled
 
   constructor(
     private router: Router,
@@ -34,6 +35,7 @@ export class ToolFormComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    await this.fetchDataSource()
     this.currentUser = this.token.getUser();
     this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
     this.idMember = this.member.id;
@@ -48,6 +50,14 @@ export class ToolFormComponent implements OnInit {
     } else {
       this.initForm(null);
     }
+
+  }
+  async fetchDataSource(): Promise<void> {
+    await this.memberService.getAllMembers().then(data => {
+      console.log(data);
+      this.members = data;
+      console.log(this.members);
+    });
 
   }
 

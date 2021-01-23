@@ -110,7 +110,9 @@ export class StudentFormComponent implements OnInit {
     );
   }
   async redirectAfterSubmitStudent(): Promise<void> {
-    await this.memberService.assignStudentToProfessor(this.studentId, this.form.value.professor).then();
+    if (!!this.form.value.professor){
+      await this.memberService.assignStudentToProfessor(this.studentId, this.form.value.professor).then();
+    }
     this.router.navigate(['./students']).then(r => '');
 
   }

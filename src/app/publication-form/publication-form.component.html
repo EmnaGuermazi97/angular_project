@@ -26,10 +26,11 @@
 
     </div>
 
-    <div class="form-group">
-      <label for="sourcePdf"> Source pdf de la publication</label>
-      <input type="text" class="form-control" formControlName="sourcePdf" id="sourcePdf" name="sourcePdf">
 
+    <div class="form-group">
+      <label for="sourcePdf" [formGroup]="form"> Source pdf</label>
+      <br>
+      <input type="file" formControlName="sourcePdf" id="sourcePdf" name="cv" placeholder="Upload file" accept=".pdf,.doc,.docx">
     </div>
 <!--<app-authors></app-authors>-->
 

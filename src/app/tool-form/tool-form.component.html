@@ -17,7 +17,32 @@
     <mat-form-field>
       <input matInput placeholder="source" formControlName="source">
     </mat-form-field>
+    <mat-accordion>
+      <!-- #docregion basic-panel -->
+      <!-- #docregion hide-toggle -->
+      <mat-expansion-panel hideToggle>
+        <!-- #enddocregion hide-toggle -->
 
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+      <!-- #enddocregion basic-panel -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Membres qui ont participé dans la publication:
+          </mat-panel-title>
+          <!--        <mat-panel-description>-->
+          <!--          Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+          <!--        </mat-panel-description>-->
+        </mat-expansion-panel-header>
+        <div *ngFor="let fullMemberName of members" >
+          <mat-checkbox [value]="fullMemberName" (click)="onClick($event)" >
+            {{fullMemberName.nom + ' '+ fullMemberName.prenom}}
+          </mat-checkbox>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
     <div class="form-element">
       <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
     </div>
