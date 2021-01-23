@@ -188,7 +188,6 @@ const routes: Routes = [
   { path: 'toolsByMember/tools/create', component: ToolFormComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
   { path: 'assign/student/teacher', component: SupervisionTeacherMemberComponent },
-
   { path: 'studentForm', component: StudentFormComponent },
   { path: 'professorForm', component: ProfessorFormComponent },
   // { path: 'studentList', component: StudentListComponent },
@@ -198,7 +197,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'member'
+    redirectTo: 'members'
   },
 ];
 

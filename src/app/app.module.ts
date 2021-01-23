@@ -46,6 +46,7 @@ import { MemberEditFormComponent } from './member-edit-form/member-edit-form.com
 import { StudentListComponent } from './member-list/student-list/student-list.component';
 import { ProfessorListComponent } from './member-list/professor-list/professor-list.component';
 import { SupervisionTeacherMemberComponent } from './supervision-teacher-member/supervision-teacher-member.component';
+import { FileDownloaderClientComponent } from './File/file-downloader-client/file-downloader-client.component';
 
 
 
@@ -77,7 +78,8 @@ import { SupervisionTeacherMemberComponent } from './supervision-teacher-member/
     MemberEditFormComponent,
     StudentListComponent,
     ProfessorListComponent,
-    SupervisionTeacherMemberComponent
+    SupervisionTeacherMemberComponent,
+    FileDownloaderClientComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@
     <hr>
     <mat-nav-list>
       <a mat-list-item href="/member"*ngIf="currentUser && role!= 'visitor'">Mon Dashboard</a>
-      <a mat-list-item href="profile"*ngIf="currentUser && role!= 'visitor'">Modifier mon profile</a>
+      <a mat-list-item href="/profile"*ngIf="currentUser && role!= 'visitor'">Modifier mon profile</a>
       <a mat-list-item href="/members">Tous les membres</a>
       <a mat-list-item href="/students">Tous les étudiants</a>
       <a mat-list-item href="/professors">Tous les enseignants</a>
@@ -30,22 +30,37 @@
       </button>
       <span>Gestion Laboratoire</span>
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+<!--        <li class="nav-item">-->
+        <a mat-button class="nav-link" style="color: currentColor" href="/login" routerLink="login" >LogIn</a>
 
-        <li class="nav-item">
-          <a href="/login" class="nav-link" routerLink="login" >Login</a>
-        </li>
+<!--        <a mat-button href="/login" routerLink="login" >LogIn</a>-->
+<!--        </li>-->
       </ul>
-
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-        <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-        </li>
+        <button mat-button [matMenuTriggerFor]="menu">{{ username }}</button>
+        <mat-menu #menu="matMenu">
+          <a href="/profile" class="nav-link" routerLink="profile" mat-menu-item>Mon Profil</a>
+          <a href class="nav-link" (click)="logout()" mat-menu-item>LogOut</a>
+        </mat-menu>
+        <!--        </li>-->
+<!--        <button mat-button [matMenuTriggerFor]="menu"></button>-->
+<!--        <mat-menu #menu="matMenu">-->
+
+  <!--        <li class="nav-item">-->
+  <!--          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>-->
+  <!--          <a href class="nav-link" (click)="logout()">LogOut</a>-->
+
+<!--          <a href="/profile" class="nav-link" routerLink="profile" mat-menu-item>{{ username }}</a>-->
+<!--          <a href class="nav-link" (click)="logout()" mat-menu-item>LogOut</a>-->
+  <!--          <a href="http://www.google.com" mat-menu-item>Item 1</a>-->
+  <!--          <button mat-menu-item>Item 2</button>-->
+<!--          </mat-menu>-->
 <!--        <li class="nav-item" *ngIf="currentUser && role =='ROLE_ADMIN'">-->
 <!--          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->
 <!--        </li>-->
-        <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a href class="nav-link" (click)="logout()">LogOut</a>-->
+<!--        </li>-->
       </ul>
 
     </mat-toolbar>
