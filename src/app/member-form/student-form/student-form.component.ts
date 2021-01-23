@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MemberService} from '../../../services/member.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StudentModel} from '../../../models/student.model';
+import {ProfessorModel} from '../../../models/professor.model';
 
 @Component({
   selector: 'app-student-form',
@@ -19,12 +20,14 @@ export class StudentFormComponent implements OnInit {
   itemSelected: StudentModel;
   form: FormGroup;
   studentId: string;
+  dataProfessors: ProfessorModel[];
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private memberService: MemberService)
   {}
 
   async ngOnInit(): Promise<void> {
+    this.fetchDataProfessors().then(r => '');
     this.studentId = this.activatedRoute.snapshot.params.id;
     console.log('this is the captered id from student list' + this.studentId);
     if (!!this.studentId) {
@@ -86,13 +89,29 @@ export class StudentFormComponent implements OnInit {
       dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
       sujet: new FormControl(this.student?.sujet, [Validators.required]),
       diplome: new FormControl(this.student?.diplome, [Validators.required]),
+      professor: new FormControl(this.student?.encadrant),
+
     });
+  }
+  async fetchDataProfessors(): Promise<void> {
+    await this.memberService.getAllProfessors().then(data => {
+      console.log(data);
+      this.dataProfessors = data;
+      console.log(this.dataProfessors);
+    });
+
   }
   onSubmit(): void {
     const objectToSubmit = {...this.student, ...this.form.value};
     console.log(objectToSubmit);
+    console.log(this.form.value.professor);
     this.memberService.saveMemberStudent(objectToSubmit).then(() =>
-      this.router.navigate(['./members'])
+      this.redirectAfterSubmitStudent()
     );
+  }
+  async redirectAfterSubmitStudent(): Promise<void> {
+    await this.memberService.assignStudentToProfessor(this.studentId, this.form.value.professor).then();
+    this.router.navigate(['./students']).then(r => '');
+
   }
 }

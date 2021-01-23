@@ -79,15 +79,21 @@ export class MemberService {
   }
 
   assignMemberToPublication(idMember: string, idPublication: string): Promise<any> {
-    return this.httpClient.post<any>(`${this.path}/membres/publication/assign?idauteur=${idMember}&idpub=${idPublication}`,{idMember, idPublication}).toPromise();
+    return this.httpClient.post<any>(`${this.path}/membres/publication/assign?idauteur=${idMember}&idpub=${idPublication}`,
+      {idMember, idPublication}).toPromise();
   }
   assignMemberToEvent(idMember: string, idEvent: string): Promise<any> {
-    return this.httpClient.post<any>(`${this.path}/membres/event/assign?idMember=${idMember}&idEvent=${idEvent}`,{idMember, idEvent}).toPromise();
+    return this.httpClient.post<any>(`${this.path}/membres/event/assign?idMember=${idMember}&idEvent=${idEvent}`,
+      {idMember, idEvent}).toPromise();
   }
   assignMemberToTool(idMember: string, idTool: string): Promise<any> {
-    return this.httpClient.post<any>(`${this.path}/membres/tool/assign?idMember=${idMember}&idTool=${idTool}`,{idMember, idTool}).toPromise();
+    return this.httpClient.post<any>(`${this.path}/membres/tool/assign?idMember=${idMember}&idTool=${idTool}`,
+      {idMember, idTool}).toPromise();
   }
-
+  assignStudentToProfessor(idStudent: string, idProfessor): Promise<StudentModel>{
+    return this.httpClient.post<StudentModel>(`${this.path}/membres/assign/student/professor?idetd=${idStudent}&idens=${idProfessor}`,
+      {idStudent, idProfessor}).toPromise();
+  }
   removeMemberById(id: string): Promise<void> {
     // return this.httpClient.delete<void>('linkToRestApi').toPromise();
     this.placeholderMembers = this.placeholderMembers.filter(item => item.id !== id);

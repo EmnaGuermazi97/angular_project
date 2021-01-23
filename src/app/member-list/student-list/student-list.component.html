@@ -80,7 +80,14 @@
   <!-- Weight  Column -->
   <ng-container matColumnDef="encadrant">
     <th mat-header-cell class="px-12" *matHeaderCellDef> Encadrant</th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.encadrant}} </td>
+    <td mat-cell class="px-12"  *matCellDef="let element ">
+      <ng-container *ngIf="element.encadrant; else defaultValue">
+        {{element.encadrant.nom + ' ' + element.encadrant.prenom}}
+      </ng-container>
+      <ng-template #defaultValue>
+        Aucun encadrant
+      </ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="actions" stickyEnd>

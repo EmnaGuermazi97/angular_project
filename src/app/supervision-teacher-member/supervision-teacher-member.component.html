@@ -1,1 +1,41 @@
-<p>supervision-teacher-member works!</p>
+<div class="my-16" fxLayout="row" fxLayoutAlign=" center">
+
+  <form [formGroup]="form" *ngIf="!!form" (ngSubmit)="onSubmit()" class="form" fxLayout="column">
+
+
+<h1>
+  Affecter un etudiant à un enseignant
+</h1>
+<hr>
+
+<mat-form-field appearance="fill" >
+  <mat-label>Choisir un enseignant</mat-label>
+  <mat-select formControlName="professor">
+    <mat-option *ngFor="let fullProfessorName of dataProfessors" [value]="fullProfessorName.id"  >
+      {{fullProfessorName.nom + ' '+ fullProfessorName.prenom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<hr>
+
+<mat-form-field appearance="fill" >
+  <mat-label>Choisir un etudiant</mat-label>
+  <mat-select formControlName="student">
+    <mat-option *ngFor="let fullStudentName of dataStudents" [value]="fullStudentName.id"  >
+      {{fullStudentName.nom + ' '+ fullStudentName.prenom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="form-element">
+  <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Submit</button>
+</div>
+</form>
+</div>
+
+
+<!--<div *ngFor="let fullProfessorName of dataSource">-->
+<!--  <mat-checkbox>-->
+<!--    {{fullProfessorName.nom + ' '+ fullProfessorName.prenom}}-->
+<!--  </mat-checkbox>-->
+<!--</div>-->

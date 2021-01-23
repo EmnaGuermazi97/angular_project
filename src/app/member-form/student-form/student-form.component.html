@@ -35,10 +35,14 @@
     <label for="diplome" [formGroup]="form"> Diplome</label>
     <input type="text" class="form-control" formControlName="diplome" id="diplome" name="diplome">
   </div>
-<!--  <div class="form-group">-->
-<!--    <label for="encadrant" [formGroup]="form"> Encadrant</label>-->
-<!--    <input type="text" class="form-control" formControlName="encadrant" id="encadrant" name="encadrant">-->
-<!--  </div>-->
+  <mat-form-field appearance="fill" >
+    <mat-label>Choisir un enseignant</mat-label>
+    <mat-select formControlName="professor">
+      <mat-option *ngFor="let fullProfessorName of dataProfessors" [value]="fullProfessorName.id"  >
+        {{fullProfessorName.nom + ' '+ fullProfessorName.prenom}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <div class="form-element">
     <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid" >Submit</button>
   </div>

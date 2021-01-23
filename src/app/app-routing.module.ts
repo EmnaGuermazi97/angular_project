@@ -23,6 +23,7 @@ import {StudentFormComponent} from './member-form/student-form/student-form.comp
 import {ProfessorFormComponent} from './member-form/professor-form/professor-form.component';
 import {StudentListComponent} from './member-list/student-list/student-list.component';
 import {ProfessorListComponent} from './member-list/professor-list/professor-list.component';
+import {SupervisionTeacherMemberComponent} from './supervision-teacher-member/supervision-teacher-member.component';
 
 const routes: Routes = [
   {
@@ -183,6 +184,8 @@ const routes: Routes = [
   { path: 'eventsByMember', component: EventsByMemberComponent },
   { path: 'toolsByMember', component: ToolsByMemberComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
+  { path: 'assign/student/teacher', component: SupervisionTeacherMemberComponent },
+
   // { path: 'studentForm', component: StudentFormComponent },
   // { path: 'professorForm', component: ProfessorFormComponent },
   // { path: 'studentList', component: StudentListComponent },

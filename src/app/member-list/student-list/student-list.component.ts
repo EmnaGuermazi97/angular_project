@@ -43,6 +43,15 @@ export class StudentListComponent implements OnInit, OnDestroy {
       console.log(data);
       this.dataSource = data;
       console.log(this.dataSource);
+      console.log(this.dataSource.values().next().value);
+      // if (!!this.dataSource.values().next().value.encadrant)
+      // {
+      //   console.log('encadrant exist');
+      // }
+      // else {
+      //   this.dataSource.values().next().value.encadrant.nom = 'aucun';
+      //   this.dataSource.values().next().value.encadrant.nom = 'encadrant';
+      // }
     });
 
   }
