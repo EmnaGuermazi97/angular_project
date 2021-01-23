@@ -185,9 +185,12 @@ const routes: Routes = [
   { path: 'toolsByMember', component: ToolsByMemberComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
   { path: 'assign/student/teacher', component: SupervisionTeacherMemberComponent },
-
-  // { path: 'studentForm', component: StudentFormComponent },
-  // { path: 'professorForm', component: ProfessorFormComponent },
+  { path: 'publicationsByMember/publications/create', component: PublicationFormComponent },
+  { path: 'eventsByMember/events/create', component: EventFormComponent },
+  { path: 'toolsByMember/tools/create', component: ToolFormComponent },
+  { path: 'chooseMembers', component: MemberChecklistTreeComponent },
+  { path: 'studentForm', component: StudentFormComponent },
+  { path: 'professorForm', component: ProfessorFormComponent },
   // { path: 'studentList', component: StudentListComponent },
   // { path: 'ProfessorList', component: ProfessorListComponent },
 
@@ -195,7 +198,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'member'
+    redirectTo: 'members'
   },
 ];
 
