@@ -25,6 +25,8 @@ export class PublicationFormComponent implements OnInit {
   role: string;
   idMember: any;
   member: Member;
+  members: Member[] = []; // empty then it would be filled
+  panelOpenState = false;
 
   constructor(
     private router: Router,
@@ -35,6 +37,7 @@ export class PublicationFormComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    await this.fetchDataSource();
     this.currentUser = this.token.getUser();
     this.member = await this.memberService.getMemberByCin(this.currentUser.cin);
     this.idMember = this.member.id;
@@ -50,6 +53,26 @@ export class PublicationFormComponent implements OnInit {
       this.initForm(null);
     }
   }
+  async fetchDataSource(): Promise<void> {
+    await this.memberService.getAllMembers().then(data => {
+      console.log(data);
+      this.members = data;
+      console.log(this.members);
+    });
+
+  }
+  toggle(event): void{
+    console.log(event.source.value);
+  }
+  checkValue(event: any): void{
+    console.log(event);
+  }
+  onClick(e): void {
+    console.log(e);
+  }
+  // onChecked(obj: any, isChecked: boolean): void{
+  //   console.log(obj, isChecked); // {}, true || false
+  // }
   initForm(item: Publication): void {
     this.form = new FormGroup({
       titre: new FormControl(item?.titre, [Validators.required]),
