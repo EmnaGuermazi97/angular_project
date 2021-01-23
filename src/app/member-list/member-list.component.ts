@@ -21,7 +21,9 @@ export class MemberListComponent implements OnInit, OnDestroy {
   protected _onDestroy = new Subject<void>();
   displayedColumns: string[] = ['id', 'cin', 'name', 'email', 'cv', 'actions'];
   dataSource: Member[] = []; // empty then it would be filled
-  constructor(private memberService: MemberService, private dialog: MatDialog, private token: TokenStorageService) { }
+  constructor(private memberService: MemberService,
+              private dialog: MatDialog,
+              private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();

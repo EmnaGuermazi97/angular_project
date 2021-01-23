@@ -4,6 +4,7 @@ import {MemberService} from '../../services/member.service';
 import {StudentModel} from '../../models/student.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 
 @Component({
@@ -17,13 +18,24 @@ export class SupervisionTeacherMemberComponent implements OnInit {
   professorId: string;
   studentId: string;
   form: FormGroup;
+  currentUser: any;
+  role: string;
 
 
   constructor(private memberService: MemberService,
-              private router: Router) {
+              private router: Router,
+              private token: TokenStorageService
+  ) {
 
   }
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
+    if (!!this.currentUser)
+    {this.role = this.currentUser.roles[0];
+    }
+    else
+    {this.role = 'visitor';
+    }
     this.fetchDataProfessors().then(r => '');
     this.fetchDataStudents().then(r => '');
     this.initForm(null);
