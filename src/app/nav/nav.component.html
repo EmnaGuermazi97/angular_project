@@ -1,11 +1,11 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+<mat-sidenav-container  class="sidenav-container">
+  <mat-sidenav *ngIf="currentUser" #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <hr>
-    <mat-nav-list>
+    <mat-nav-list  >
       <a mat-list-item href="/member"*ngIf="currentUser && role!= 'visitor'">Mon Dashboard</a>
       <a mat-list-item href="/profile"*ngIf="currentUser && role!= 'visitor'">Modifier mon profile</a>
       <a mat-list-item href="/members">Tous les membres</a>
