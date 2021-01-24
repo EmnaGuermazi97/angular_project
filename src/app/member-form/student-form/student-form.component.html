@@ -16,13 +16,8 @@
     <br>
     <input type="file" formControlName="cv" id="cv" name="cv" placeholder="Upload file" accept=".pdf,.doc,.docx">
 <!--    <input type="file"  formControlName="cv" id="cv" name="cv" placeholder="Upload file" (change)="uploadFileToServer($event)"/>-->
-
   </div>
-<!--  <div class="form-group">-->
-<!--    <label for="dateInscription" [formGroup]="form"> Date Inscription</label>-->
-<!--    <input type="text" class="form-control" formControlName="dateInscription" id="dateInscription" name="dateInscription">-->
-<!--  </div>-->
-<!--  -->
+
   <mat-form-field appearance="fill">
     <mat-label>Date Inscription</mat-label>
     <input matInput [matDatepicker]="picker" [formGroup]="form" formControlName="dateInscription">
@@ -38,6 +33,7 @@
     <label for="diplome" [formGroup]="form"> Diplome</label>
     <input type="text" class="form-control" formControlName="diplome" id="diplome" name="diplome">
   </div>
+  
   <mat-form-field appearance="fill" >
     <mat-label>Choisir un enseignant</mat-label>
     <mat-select formControlName="professor">
@@ -46,6 +42,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  
   <div class="form-element">
     <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid" >Submit</button>
   </div>

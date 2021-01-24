@@ -35,24 +35,12 @@ export class MemberFormComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    // this.currentItemId = this.activatedRoute.snapshot.params.id;
-    // console.log(this.currentItemId);
+
     this.cin = this.activatedRoute.snapshot.queryParams.cin;
     this.email = this.activatedRoute.snapshot.queryParams.email;
     console.log(this.cin);
     console.log(this.email);
-    // this.currentItemCin = this.activatedRoute.snapshot.params.cin;
-    // this.item = await this.memberService.getMemberByCin(this.currentItemCin);
-
-    // this.currentItemId = this.activatedRoute.snapshot.params.id;
-    // if (!!this.currentItemId) {
-    //   this.memberService.getMemberById(this.currentItemId).then(item => {
-    //     this.item = item;
-    //     this.initForm(item);
-    //   });
-    // } else {
     this.initForm(null);
-    // }
     this.form.valueChanges.subscribe(newval => console.log(newval));
   }
 

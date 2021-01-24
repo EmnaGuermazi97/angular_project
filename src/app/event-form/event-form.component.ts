@@ -75,7 +75,6 @@ export class EventFormComponent implements OnInit {
     this.title = this.form.value.title;
     this.eventService.saveEvent(objectToSubmit).then(() =>
       this.assignEventToMember()
-      // this.router.navigate(['./events'])
     );
   }
   async assignEventToMember(): Promise<void> {

@@ -16,7 +16,6 @@ export class MemberComponent implements OnInit {
     map(({ matches }) => {
       if (matches) {
         return [
-          // { title: 'Card 1', cols: 1, rows: 1, image: '././assets/img/members1.png', path: '/' },
           { title: 'Card 2', cols: 1, rows: 1, image: '././assets/img/events.jpg', path: '/eventsByMember'  },
           { title: 'Card 3', cols: 1, rows: 1, image: '././assets/img/publications.jpg', path: '/publicationsByMember' },
           { title: 'Card 4', cols: 1, rows: 1, image: '././assets/img/tools1.png', path: '/toolsByMember' }
@@ -24,7 +23,6 @@ export class MemberComponent implements OnInit {
       }
 
       return [
-        // { title: 'Encadrement', cols: 1, rows: 1, image: '././assets/img/members1.png', path: '/' },
         { title: 'Mes Evenements', cols: 1, rows: 1, image: '././assets/img/events.jpg', path: '/eventsByMember' },
         { title: 'Mes Publications', cols: 1, rows: 1, image: '././assets/img/publications.jpg', path: '/publicationsByMember' },
         { title: 'Mes Outils', cols: 1, rows: 1, image: '././assets/img/tools1.png', path: '/toolsByMember' }

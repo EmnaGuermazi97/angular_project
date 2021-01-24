@@ -33,14 +33,6 @@
     <td mat-cell class="px-12" *matCellDef="let element"> {{element.location}} </td>
   </ng-container>
 
-
-  <!--  &lt;!&ndash; Symbol Column &ndash;&gt;-->
-  <!--  <ng-container matColumnDef="createdDate">-->
-  <!--    <th mat-header-cell class="px-12" *matHeaderCellDef> Created Date</th>-->
-  <!--    <td mat-cell class="px-12" *matCellDef="let element">-->
-  <!--      {{element.createdDate | date :'d MMMM y, HH:mm'}}-->
-  <!--    </td>-->
-  <!--  </ng-container>-->
   <ng-container matColumnDef="actions" stickyEnd>
     <th mat-header-cell class="px-12 w-120" *matHeaderCellDef></th>
     <td mat-cell class="px-12 w-120" *matCellDef="let element">

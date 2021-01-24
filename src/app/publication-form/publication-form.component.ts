@@ -62,19 +62,12 @@ export class PublicationFormComponent implements OnInit {
     });
 
   }
-  toggle(event): void{
-    console.log(event.source.value);
-  }
-  checkValue(event: any): void{
-    console.log(event);
-  }
+  
   onClick(e): void {
     console.log(e);
     console.log(this.form.value.membersIds);
   }
-  // onChecked(obj: any, isChecked: boolean): void{
-  //   console.log(obj, isChecked); // {}, true || false
-  // }
+
   initForm(item: Publication): void {
     this.form = new FormGroup({
       titre: new FormControl(item?.titre, [Validators.required]),
