@@ -62,7 +62,6 @@ export class PublicationFormComponent implements OnInit {
     });
 
   }
-  
   onClick(e): void {
     console.log(e);
     console.log(this.form.value.membersIds);

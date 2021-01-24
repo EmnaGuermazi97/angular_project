@@ -81,7 +81,7 @@ import {StudentModel} from "../../../models/student.model";
       prenom: new FormControl(this.professor?.prenom, [Validators.required]),
       nom: new FormControl(this.professor?.nom, [Validators.required]),
       email: new FormControl(this.professor?.email, [Validators.required]),
-      type_mbr: new FormControl('Etudiant', [Validators.required]),
+      type_mbr: new FormControl('Enseignant', [Validators.required]),
       cv: new FormControl(this.professor?.cv, [Validators.required]),
       etablissement: new FormControl(this.professor?.etablissement, [Validators.required]),
       grade: new FormControl(this.professor?.grade, [Validators.required]),
@@ -91,7 +91,7 @@ import {StudentModel} from "../../../models/student.model";
     const objectToSubmit = {...this.professor, ...this.form.value};
     console.log(objectToSubmit);
     this.memberService.saveMemberProfessor(objectToSubmit).then(() =>
-      this.router.navigate(['./members'])
+      this.router.navigate(['./professors'])
     );
   }
 }

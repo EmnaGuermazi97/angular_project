@@ -4,6 +4,7 @@ import {MemberService} from '../../../services/member.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StudentModel} from '../../../models/student.model';
 import {ProfessorModel} from '../../../models/professor.model';
+import {TokenStorageService} from '../../../services/token-storage.service';
 // import { RequestOptions, Headers, Http } from '@angular/http';
 // import {Observable} from "rxjs";
 // import {environment} from "../../../environments/environment";
@@ -24,13 +25,23 @@ export class StudentFormComponent implements OnInit {
   form: FormGroup;
   studentId: string;
   dataProfessors: ProfessorModel[];
+  currentUser: any;
+  role: string;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private memberService: MemberService)
+              private memberService: MemberService,
+              private token: TokenStorageService)
   {}
 
   async ngOnInit(): Promise<void> {
     this.fetchDataProfessors().then(r => '');
+    this.currentUser = this.token.getUser();
+    if (!!this.currentUser)
+    {this.role = this.currentUser.roles[0];
+    }
+    else
+    {this.role = 'visitor';
+    }
     this.studentId = this.activatedRoute.snapshot.params.id;
     console.log('this is the captered id from student list' + this.studentId);
     if (!!this.studentId) {
@@ -46,7 +57,7 @@ export class StudentFormComponent implements OnInit {
       this.student = await this.memberService.getMemberStudentById(this.currentItemId);
 
       console.log(this.student);
-      this.initFormUpdate(this.student);
+      this.initFormUpdateFromMembers(this.student);
       console.log(this.form);
     } else {
       console.log(this.memberForm);
@@ -55,17 +66,18 @@ export class StudentFormComponent implements OnInit {
     }
   }
 
-  initFormUpdate(student: StudentModel): void{
+  initFormUpdateFromMembers(student: StudentModel): void{
     this.form = new FormGroup({
       cin: new FormControl(this.student?.cin, [Validators.required]),
       prenom: new FormControl(this.student?.prenom, [Validators.required]),
       nom: new FormControl(this.student?.nom, [Validators.required]),
       email: new FormControl(this.student?.email, [Validators.required]),
       type_mbr: new FormControl('Etudiant', [Validators.required]),
-      cv: new FormControl(this.student?.cv, [Validators.required]),
+      cv: new FormControl(this.student?.cv),
       dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
       sujet: new FormControl(this.student?.sujet, [Validators.required]),
       diplome: new FormControl(this.student?.diplome, [Validators.required]),
+      professor: new FormControl(this.student?.encadrant),
     });
   }
   initFormCreate(student: StudentModel): void{
@@ -75,10 +87,11 @@ export class StudentFormComponent implements OnInit {
       nom: new FormControl(this.student?.nom, [Validators.required]),
       email: new FormControl(this.memberForm.value.email, [Validators.required]),
       type_mbr: new FormControl('Etudiant', [Validators.required]),
-      cv: new FormControl(this.student?.cv, [Validators.required]),
+      cv: new FormControl(this.student?.cv),
       dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
       sujet: new FormControl(this.student?.sujet, [Validators.required]),
       diplome: new FormControl(this.student?.diplome, [Validators.required]),
+      // professor: new FormControl(this.student?.encadrant),
     });
   }
   initFormUpdateFromStudent(student: StudentModel): void{
@@ -88,12 +101,11 @@ export class StudentFormComponent implements OnInit {
       nom: new FormControl(this.student?.nom, [Validators.required]),
       email: new FormControl(this.student?.email, [Validators.required]),
       type_mbr: new FormControl('Etudiant', [Validators.required]),
-      cv: new FormControl(this.student?.cv, [Validators.required]),
+      cv: new FormControl(this.student?.cv),
       dateInscription: new FormControl(this.student?.dateInscription, [Validators.required]),
       sujet: new FormControl(this.student?.sujet, [Validators.required]),
       diplome: new FormControl(this.student?.diplome, [Validators.required]),
       professor: new FormControl(this.student?.encadrant),
-
     });
   }
   async fetchDataProfessors(): Promise<void> {
@@ -109,12 +121,18 @@ export class StudentFormComponent implements OnInit {
     console.log(objectToSubmit);
     console.log(this.form.value.professor);
     this.memberService.saveMemberStudent(objectToSubmit).then(() =>
-      this.redirectAfterSubmitStudent()
+      this.redirectToAssignStudentToTeacher()
     );
   }
-  async redirectAfterSubmitStudent(): Promise<void> {
+  async redirectToAssignStudentToTeacher(): Promise<void> {
     if (!!this.form.value.professor){
-      await this.memberService.assignStudentToProfessor(this.studentId, this.form.value.professor).then();
+      if (!!this.studentId)
+      {
+        await this.memberService.assignStudentToProfessor(this.studentId, this.form.value.professor).then();
+      }
+      if (!!this.currentItemId) {
+        await this.memberService.assignStudentToProfessor(this.currentItemId, this.form.value.professor).then();
+      }
     }
     this.router.navigate(['./students']).then(r => '');
 

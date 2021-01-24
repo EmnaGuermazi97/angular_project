@@ -26,6 +26,8 @@ export class ToolFormComponent implements OnInit {
   member: Member;
   members: Member[] = []; // empty then it would be filled
   panelOpenState = false;
+  participentsId: any;
+
 
 
   constructor(
@@ -67,7 +69,13 @@ export class ToolFormComponent implements OnInit {
     this.form = new FormGroup({
       date: new FormControl(item?.date, [Validators.required]),
       source: new FormControl(item?.source, [Validators.required]),
+      membersIds: new FormControl(item?.membersIds)
+
     });
+  }
+  onClick(e): void {
+    console.log(e);
+    console.log(this.form.value.membersIds);
   }
 
 
@@ -75,17 +83,27 @@ export class ToolFormComponent implements OnInit {
     const objectToSubmit = {...this.item, ...this.form.value};
     console.log(objectToSubmit);
     this.source = this.form.value.source;
+    this.participentsId = this.form.value.membersIds ;
     this.toolService.saveTool(objectToSubmit).then(() =>
-      this.assignToolToMember()
+      this.assignToolToMembers()
     );
   }
-  async assignToolToMember(): Promise<void> {
+  async assignToolToMembers(): Promise<void> {
+    await this.assignToolMemberSignedIn();
+    for (const participantId of this.participentsId) {
+      console.log('participantId ' + participantId);
+      this.tool = await this.toolService.getToolBySource(this.source);
+      this.idTool = this.tool.id;
+      await this.memberService.assignMemberToTool(participantId, this.idTool);
+    }
+    await this.router.navigate(['./tools']);
+
+  }
+  async assignToolMemberSignedIn(): Promise<void> {
     this.tool = await this.toolService.getToolBySource(this.source);
     this.idTool = this.tool.id;
     console.log(this.idTool);
     console.log(this.idMember);
     await this.memberService.assignMemberToTool( this.idMember, this.idTool);
-    await this.router.navigate(['./tools'])
-
   }
 }

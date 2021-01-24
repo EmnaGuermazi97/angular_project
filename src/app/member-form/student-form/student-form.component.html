@@ -33,8 +33,8 @@
     <label for="diplome" [formGroup]="form"> Diplome</label>
     <input type="text" class="form-control" formControlName="diplome" id="diplome" name="diplome">
   </div>
-  
-  <mat-form-field appearance="fill" >
+
+  <mat-form-field *ngIf="currentUser && role == 'ROLE_ADMIN'" appearance="fill" >
     <mat-label>Choisir un enseignant</mat-label>
     <mat-select formControlName="professor">
       <mat-option *ngFor="let fullProfessorName of dataProfessors" [value]="fullProfessorName.id"  >
@@ -42,7 +42,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  
+
   <div class="form-element">
     <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid" >Submit</button>
   </div>
