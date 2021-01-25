@@ -183,7 +183,7 @@ const routes: Routes = [
   { path: 'publicationsByMember', component: PublicationsByMemberComponent },
   { path: 'eventsByMember', component: EventsByMemberComponent },
   { path: 'toolsByMember', component: ToolsByMemberComponent },
-  { path: 'publicationsByMember/publications/create', component: PublicationsByMemberComponent },
+  { path: 'publicationsByMember/publications/create', component: PublicationFormComponent },
   { path: 'eventsByMember/events/create', component: EventFormComponent },
   { path: 'toolsByMember/tools/create', component: ToolFormComponent },
   { path: 'chooseMembers', component: MemberChecklistTreeComponent },
