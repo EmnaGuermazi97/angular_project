@@ -28,7 +28,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Gestion Laboratoire</span>
+      <a mat-button class="nav-link" style="color: currentColor" href="/home" routerLink="home" ><h1>Gestion Laboratoire</h1></a>
+
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
 <!--        <li class="nav-item">-->
         <a mat-button class="nav-link" style="color: currentColor" href="/login" routerLink="login" >LogIn</a>
