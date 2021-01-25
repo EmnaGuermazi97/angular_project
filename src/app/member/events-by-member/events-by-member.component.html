@@ -47,7 +47,7 @@
 <!--      <button *ngIf="currentUser " mat-icon-button [routerLink]="element.id + '/edit'">-->
 <!--        <mat-icon>edit</mat-icon>-->
 <!--      </button>-->
-      <button *ngIf="currentUser" mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
+      <button *ngIf="currentUser && role =='ROLE_ADMIN'" mat-icon-button color="warn" (click)="onRemoveAccount(element.id)">
         <mat-icon>delete</mat-icon>
       </button>
 

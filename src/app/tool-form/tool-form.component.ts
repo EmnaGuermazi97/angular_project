@@ -90,11 +90,14 @@ export class ToolFormComponent implements OnInit {
   }
   async assignToolToMembers(): Promise<void> {
     await this.assignToolMemberSignedIn();
+    if (!!this.participentsId)
+    {
     for (const participantId of this.participentsId) {
       console.log('participantId ' + participantId);
       this.tool = await this.toolService.getToolBySource(this.source);
       this.idTool = this.tool.id;
       await this.memberService.assignMemberToTool(participantId, this.idTool);
+    }
     }
     await this.router.navigate(['./tools']);
 

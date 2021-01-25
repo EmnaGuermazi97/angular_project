@@ -197,7 +197,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'members'
+    redirectTo: 'home'
   },
 ];
 

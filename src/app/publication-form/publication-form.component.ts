@@ -94,20 +94,19 @@ export class PublicationFormComponent implements OnInit {
     this.title = this.form.value.titre;
     this.participentsId = this.form.value.membersIds ;
     console.log('final choice' + this.participentsId);
-    for (const participantId of this.participentsId) {
-      console.log('participantId ' + participantId);
-    }
     await this.publicationService.savePublication(objectToSubmit).then(() =>
       this.assignPublicationToMembers()
  );
   }
   async assignPublicationToMembers(): Promise<void> {
     await this.assignPublicationMemberSignedIn();
-    for (const participantId of this.participentsId) {
-      console.log('participantId ' + participantId);
-      this.publication = await this.publicationService.getPublicationByTitle(this.title);
-      this.idPublication = this.publication.id;
-      await this.memberService.assignMemberToPublication(participantId, this.idPublication);
+    if (!!this.participentsId) {
+      for (const participantId of this.participentsId) {
+        console.log('participantId ' + participantId);
+        this.publication = await this.publicationService.getPublicationByTitle(this.title);
+        this.idPublication = this.publication.id;
+        await this.memberService.assignMemberToPublication(participantId, this.idPublication);
+      }
     }
     await this.router.navigate(['./publications']);
   }
